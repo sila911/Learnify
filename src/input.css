@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* custom dark mode variant */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-moul: "Moul", sans-serif;
+    --color-primary: red;
+
+}
