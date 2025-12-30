@@ -38,6 +38,8 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
@@ -76,13 +78,19 @@
                     class="text-white bg-primary hover:bg-primary/90 focus:ring-4 focus:outline-none focus:ring-primary/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all shadow-md hover:shadow-lg">
                     Get Started
                 </button>
+
                 <button data-collapse-toggle="navbar-sticky" type="button" id="mobile-menu-button"
                     class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
                     <span class="sr-only">Open main menu</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 17 14">
+                    <svg id="hamburger-icon" class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 17 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                    <svg id="close-icon" class="w-5 h-5 hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
@@ -116,8 +124,8 @@
         <section
             class="relative bg-gradient-to-b from-secondary to-white pt-20 pb-24 lg:pt-32 lg:pb-40 overflow-hidden">
             <div class="container mx-auto px-6 text-center relative z-10">
-                <div
-                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-8 animate-fade-in-up">
+                <div data-aos="fade-down"
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-8">
                     <span class="relative flex h-2 w-2">
                         <span
                             class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
@@ -126,18 +134,21 @@
                     New AI-Powered Learning Paths Available
                 </div>
 
-                <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 tracking-tight mb-6 leading-tight">
+                <h1 data-aos="fade-up" data-aos-delay="100"
+                    class="text-5xl md:text-7xl font-extrabold text-gray-900 tracking-tight mb-6 leading-tight">
                     Upgrade your skills,<br>
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">Advance
                         your career.</span>
                 </h1>
 
-                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+                <p data-aos="fade-up" data-aos-delay="200"
+                    class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
                     Learn from industry experts, master new skills, and achieve your goals at your own pace. Join
                     10,000+ learners today.
                 </p>
 
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <div data-aos="fade-up" data-aos-delay="300"
+                    class="flex flex-col sm:flex-row justify-center items-center gap-4">
                     <a href="#courses"
                         class="w-full sm:w-auto px-8 py-4 bg-primary text-white rounded-xl font-semibold text-lg hover:bg-primary/90 transform hover:-translate-y-1 transition duration-300 shadow-lg hover:shadow-primary/30">
                         Explore Courses
@@ -157,7 +168,7 @@
             </div>
         </section>
 
-        <section class="py-12 bg-white border-y border-gray-100">
+        <section class="py-12 bg-white border-y border-gray-100" data-aos="fade-in">
             <div class="container mx-auto px-6">
                 <p class="text-center text-sm font-semibold text-gray-400 uppercase tracking-widest mb-8">Trusted by
                     innovative teams</p>
@@ -179,18 +190,21 @@
                 </div>
             </div>
         </section>
-        <!-- Courses Section -->
-        <section id="courses" class="py-20 bg-secondary">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
+
+        <section id="courses" class="py-20 bg-secondary relative overflow-hidden">
+            <div class="absolute inset-0 opacity-40"
+                style="background-image: radial-gradient(#8487BF 1px, transparent 1px); background-size: 24px 24px;">
+            </div>
+
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="text-center mb-16" data-aos="fade-up">
                     <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Trending Now</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">Discover our highest-rated courses, handpicked for you
                         based on current industry trends.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- card 1 -->
-                    <div
+                    <div data-aos="fade-up" data-aos-duration="1000"
                         class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col h-full">
                         <div class="relative overflow-hidden h-48">
                             <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=1000&auto=format&fit=crop"
@@ -206,19 +220,16 @@
                                 <span
                                     class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Development</span>
                                 <div class="flex text-yellow-400 text-xs">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
                                 </div>
                                 <span class="text-gray-400 text-xs">(4.9)</span>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition">
-                                Python for Beginners</h3>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition">Python
+                                for Beginners</h3>
                             <p class="text-gray-600 text-sm mb-4 line-clamp-2">Master Python from scratch. Automate
                                 tasks, build apps, and analyze data.</p>
-
                             <div
                                 class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center text-sm text-gray-500">
                                 <span><i class="fa-regular fa-clock mr-1"></i> 8h 30m</span>
@@ -226,8 +237,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- card 2 -->
-                    <div
+
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"
                         class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col h-full">
                         <div class="relative overflow-hidden h-48">
                             <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1000&auto=format&fit=crop"
@@ -239,19 +250,16 @@
                                 <span
                                     class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Productivity</span>
                                 <div class="flex text-yellow-400 text-xs">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
                                 </div>
                                 <span class="text-gray-400 text-xs">(5.0)</span>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition">AI
-                                for Everyone</h3>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition">AI for
+                                Everyone</h3>
                             <p class="text-gray-600 text-sm mb-4 line-clamp-2">Leverage ChatGPT and AI tools to 10x your
                                 daily productivity.</p>
-
                             <div
                                 class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center text-sm text-gray-500">
                                 <span><i class="fa-regular fa-clock mr-1"></i> 12h 15m</span>
@@ -259,8 +267,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- card 3 -->
-                    <div
+
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
                         class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col h-full">
                         <div class="relative overflow-hidden h-48">
                             <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1000&auto=format&fit=crop"
@@ -272,19 +280,16 @@
                                 <span
                                     class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Mobile</span>
                                 <div class="flex text-yellow-400 text-xs">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star-half-stroke"></i>
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star-half-stroke"></i>
                                 </div>
                                 <span class="text-gray-400 text-xs">(4.8)</span>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition">iOS
-                                & Android Bootcamp</h3>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition">iOS &
+                                Android Bootcamp</h3>
                             <p class="text-gray-600 text-sm mb-4 line-clamp-2">Build real mobile apps using React Native
                                 and Flutter. Launch your startup.</p>
-
                             <div
                                 class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center text-sm text-gray-500">
                                 <span><i class="fa-regular fa-clock mr-1"></i> 13h 05m</span>
@@ -292,58 +297,29 @@
                             </div>
                         </div>
                     </div>
-                    <!-- card 4 -->
-                    <div
+
+                    <div data-aos="fade-up" data-aos-duration="1000"
                         class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col h-full">
                         <div class="relative overflow-hidden h-48">
-                            <img src="https://i.pinimg.com/736x/6b/c5/98/6bc5985439df332a6857b552a3d72135.jpg"
+                            <img src="https://images.unsplash.com/photo-1593720213428-28a5b9e94613?q=80&w=1000&auto=format&fit=crop"
                                 alt="HTML CSS and JavaScript code on screen"
                                 class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                         </div>
-
                         <div class="p-6 flex flex-col flex-grow">
                             <div class="flex items-center gap-2 mb-3">
                                 <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Web
                                     Dev</span>
                                 <div class="flex text-yellow-400 text-xs">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                        </path>
-                                    </svg>
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                        </path>
-                                    </svg>
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                        </path>
-                                    </svg>
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                        </path>
-                                    </svg>
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                        </path>
-                                    </svg>
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
                                 </div>
-                                <span class="ml-2 text-gray-600 text-sm">5.0/5.0</span>
+                                <span class="text-gray-400 text-xs">(5.0)</span>
                             </div>
-
                             <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition">
-                                Introduction to HTML, CSS, & JavaScript
-                            </h3>
-
-                            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-                                Skills you'll gain: Responsive Web Design, Cascading Style Sheets (CSS), Web
-                                Development, Javascript, Bootstrap (Front-End Framework), Scripting, Browser...
-                            </p>
-
+                                Introduction to HTML, CSS, & JavaScript</h3>
+                            <p class="text-gray-600 text-sm mb-4 line-clamp-2">Skills you'll gain: Responsive Web
+                                Design, Cascading Style Sheets (CSS), Web Development...</p>
                             <div
                                 class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center text-sm text-gray-500">
                                 <span><i class="fa-regular fa-clock mr-1"></i> 10h 13m</span>
@@ -357,18 +333,19 @@
 
         <section class="py-20 bg-white">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-12">Expert-Led Featured Courses</h2>
+                <h2 data-aos="fade-down" class="text-3xl font-extrabold text-gray-900 text-center mb-12">Expert-Led
+                    Featured Courses</h2>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div
+                    <div data-aos="fade-left"
                         class="flex flex-col p-6 bg-secondary rounded-2xl border border-gray-100 hover:border-primary/40 transition duration-300">
                         <div class="flex items-center justify-between mb-4">
                             <span class="px-3 py-1 text-xs font-semibold text-primary bg-primary/20 rounded-full">Web
                                 Dev</span>
                             <span class="text-gray-500 text-sm">12 Modules</span>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-primary cursor-pointer">The
-                            Complete 2025 Web Dev Bootcamp</h3>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-primary cursor-pointer">The Complete
+                            2025 Web Dev Bootcamp</h3>
                         <p class="text-gray-600 text-sm mb-6 flex-grow">Become a full-stack developer. Learn HTML, CSS,
                             Javascript, React, Node.js, and more.</p>
                         <div class="flex items-center mt-4">
@@ -381,15 +358,15 @@
                         </div>
                     </div>
 
-                    <div
+                    <div data-aos="fade-left" data-aos-delay="100"
                         class="flex flex-col p-6 bg-secondary rounded-2xl border border-gray-100 hover:border-primary/40 transition duration-300">
                         <div class="flex items-center justify-between mb-4">
                             <span class="px-3 py-1 text-xs font-semibold text-pink-600 bg-pink-100 rounded-full">Data
                                 Science</span>
                             <span class="text-gray-500 text-sm">15 Modules</span>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-primary cursor-pointer">Data
-                            Science & ML with Python</h3>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-primary cursor-pointer">Data Science
+                            & ML with Python</h3>
                         <p class="text-gray-600 text-sm mb-6 flex-grow">Analyze data, visualize trends, and build
                             predictive machine learning models.</p>
                         <div class="flex items-center mt-4">
@@ -403,7 +380,7 @@
                         </div>
                     </div>
 
-                    <div
+                    <div data-aos="fade-left" data-aos-delay="200"
                         class="flex flex-col p-6 bg-secondary rounded-2xl border border-gray-100 hover:border-primary/40 transition duration-300">
                         <div class="flex items-center justify-between mb-4">
                             <span
@@ -435,7 +412,7 @@
 
             <div class="container mx-auto px-6 relative z-10">
                 <div class="max-w-4xl mx-auto">
-                    <div class="text-center mb-16">
+                    <div class="text-center mb-16" data-aos="fade-up">
                         <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">Built for Learners, By Learners
                         </h2>
                         <p class="text-xl text-gray-600">Our mission is to make professional-level education accessible
@@ -443,7 +420,7 @@
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-12 items-start">
-                        <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-xl">
+                        <div data-aos="fade-right" class="bg-white p-8 rounded-2xl border border-gray-200 shadow-xl">
                             <h3 class="text-2xl font-bold text-primary mb-4">My Story</h3>
                             <p class="text-gray-600 leading-relaxed mb-4">
                                 I founded this platform in 2025 with a simple idea: bridge the gap between expensive
@@ -456,7 +433,7 @@
                             </p>
                         </div>
 
-                        <div class="space-y-8">
+                        <div data-aos="fade-left" class="space-y-8">
                             <div>
                                 <h3 class="text-xl font-bold text-primary mb-2">My Vision</h3>
                                 <p class="text-gray-600">To build a vibrant, inclusive global community where education
@@ -488,22 +465,20 @@
                     </div>
 
                     <div class="container mx-auto px-6 relative z-10">
-                        <div class="text-center mb-10">
+                        <div class="text-center mb-10" data-aos="fade-down">
                             <h2 class="text-4xl font-extrabold text-gray-900 mb-4">Get in Touch</h2>
                             <p class="text-lg text-gray-600">We'd love to hear from you. Send us a message below.</p>
                         </div>
 
-                        <div
+                        <div data-aos="zoom-in-up" data-aos-duration="1000"
                             class="max-w-2xl mx-auto bg-white p-8 md:p-12 rounded-3xl border border-gray-200 shadow-xl">
                             <form class="flex flex-col gap-6">
-
                                 <div class="flex flex-col">
                                     <label for="name" class="mb-2 font-semibold text-gray-700">Your Name</label>
                                     <input type="text" id="name" placeholder="Enter your name..."
                                         class="w-full px-4 py-3 rounded-lg bg-secondary border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent text-gray-900 placeholder-gray-400 outline-none transition"
                                         required>
                                 </div>
-
                                 <div class="flex flex-col">
                                     <label for="email" class="mb-2 font-semibold text-gray-700">Email Address</label>
                                     <div class="relative">
@@ -516,19 +491,16 @@
                                             required>
                                     </div>
                                 </div>
-
                                 <div class="flex flex-col">
                                     <label for="message" class="mb-2 font-semibold text-gray-700">Message</label>
                                     <textarea id="message" rows="5" placeholder="How can we help you?"
                                         class="w-full px-4 py-3 rounded-lg bg-secondary border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent text-gray-900 placeholder-gray-400 outline-none transition resize-none"
                                         required></textarea>
                                 </div>
-
                                 <button type="submit"
                                     class="bg-primary text-white px-6 py-4 rounded-xl font-bold text-lg hover:bg-primary/90 transform hover:-translate-y-1 transition duration-300 flex items-center justify-center gap-2 shadow-lg shadow-primary/30">
                                     Send Message <i class="fa-solid fa-paper-plane"></i>
                                 </button>
-
                             </form>
                         </div>
                     </div>
@@ -544,18 +516,18 @@
                     </a>
 
                     <div class="flex space-x-6">
-                        <a href="https://github.com/sila911" target="_blank"
-                            class="text-gray-400 hover:text-gray-900 transition text-xl"><i
-                                class="fa-brands fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/sila-sem-78b3872b8/" target="_blank"
-                            class="text-gray-400 hover:text-blue-600 transition text-xl"><i
-                                class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://www.instagram.com/siladc/" target="_blank"
-                            class="text-gray-400 hover:text-pink-600 transition text-xl"><i
-                                class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/silaadc" target="_blank"
+                        <a href="https://www.facebook.com" target="_blank"
                             class="text-gray-400 hover:text-primary transition text-xl"><i
                                 class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com" target="_blank"
+                            class="text-gray-400 hover:text-pink-600 transition text-xl"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com" target="_blank"
+                            class="text-gray-400 hover:text-blue-600 transition text-xl"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://github.com" target="_blank"
+                            class="text-gray-400 hover:text-gray-900 transition text-xl"><i
+                                class="fa-brands fa-github"></i></a>
                     </div>
                 </div>
 
@@ -567,21 +539,33 @@
 
     </main>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Mobile menu toggle
+        // Initialize AOS
+        AOS.init({
+            duration: 800, // Animation duration in milliseconds
+            once: true,    // Whether animation should happen only once
+        });
+
+        // Mobile menu toggle logic
         const btn = document.getElementById('mobile-menu-button');
         const menu = document.getElementById('navbar-sticky');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
 
         btn.addEventListener('click', () => {
             menu.classList.toggle('hidden');
+            hamburgerIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
         });
 
-        // Close menu when clicking a link (mobile UX improvement)
         const mobileLinks = menu.querySelectorAll('a');
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (!menu.classList.contains('hidden')) {
                     menu.classList.add('hidden');
+                    hamburgerIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
                 }
             });
         });
