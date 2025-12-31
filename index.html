@@ -6,27 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Learnify - Unlock Your Potential | Online Courses</title>
-    <meta name="description"
-        content="Master new skills with Learnify. Access expert-led online courses in Web Development, Data Science, AI, and Marketing. Start your learning journey today.">
-    <meta name="keywords"
-        content="online courses, e-learning, coding bootcamp, web development, python, data science, Learnify, learn to code">
+    <meta name="description" content="Master new skills with Learnify...">
+    <meta name="keywords" content="online courses, e-learning...">
     <meta name="author" content="Sila SEM">
     <meta name="robots" content="index, follow">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://learnify-sila.vercel.app/">
     <meta property="og:title" content="Learnify - Unlock Your Potential">
-    <meta property="og:description"
-        content="Upgrade your skills and advance your career with expert-led courses in Tech and Marketing.">
     <meta property="og:image"
-        content="https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1200&auto=format&fit=crop">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://learnify-sila.vercel.app/">
-    <meta name="twitter:title" content="Learnify - Unlock Your Potential">
-    <meta name="twitter:description"
-        content="Upgrade your skills and advance your career with expert-led courses in Tech and Marketing.">
-    <meta name="twitter:image"
         content="https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1200&auto=format&fit=crop">
 
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2997/2997608.png">
@@ -37,50 +25,72 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <script>
         tailwind.config = {
+            darkMode: 'class', // Enable manual dark mode toggling
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        // Custom color palette applied here
-                        primary: '#8487BF',  // Soft Purple
-                        secondary: '#F0F1F2', // Light Gray/White
-                        accent: '#70e000',    // Bright Green
+                        primary: '#8487BF',
+                        secondary: '#F0F1F2',
+                        accent: '#70e000',
                     }
                 }
             }
         }
     </script>
+
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
 </head>
 
-<body class="font-sans text-gray-700 antialiased bg-secondary">
+<body
+    class="font-sans text-gray-700 antialiased bg-secondary dark:bg-gray-900 dark:text-white transition-colors duration-300">
 
-    <nav class="fixed w-full z-50 top-0 start-0 border-b border-gray-200 bg-white/90 backdrop-blur-md">
+    <nav
+        class="fixed w-full z-50 top-0 start-0 border-b border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md transition-colors duration-300">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
                     <i class="fa-solid fa-graduation-cap fa-lg"></i>
                 </div>
-                <span class="self-center text-2xl font-bold whitespace-nowrap text-gray-900">Learnify</span>
+                <span
+                    class="self-center text-2xl font-bold whitespace-nowrap text-gray-900 dark:text-white">Learnify</span>
             </a>
 
-            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <a href="#"
-                    class="hidden md:inline-block text-gray-900 hover:text-primary font-medium px-4 py-2 mr-2 transition">Sign
-                    In</a>
+            <div class="flex items-center md:order-2 space-x-3 rtl:space-x-reverse">
+
+                <button id="theme-toggle" type="button"
+                    class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                            fill-rule="evenodd" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+
                 <button type="button"
                     class="text-white bg-primary hover:bg-primary/90 focus:ring-4 focus:outline-none focus:ring-primary/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all shadow-md hover:shadow-lg">
                     Get Started
                 </button>
 
                 <button data-collapse-toggle="navbar-sticky" type="button" id="mobile-menu-button"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                     <span class="sr-only">Open main menu</span>
                     <svg id="hamburger-icon" class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 17 14">
@@ -97,23 +107,18 @@
 
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                 <ul
-                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-secondary md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
-                    <li>
-                        <a href="#"
+                    class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-secondary md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
+                    <li><a href="#"
                             class="block py-2 px-3 text-white bg-primary rounded md:bg-transparent md:text-primary md:p-0"
-                            aria-current="page">Home</a>
+                            aria-current="page">Home</a></li>
+                    <li><a href="#courses"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition">Courses</a>
                     </li>
-                    <li>
-                        <a href="#courses"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 transition">Courses</a>
+                    <li><a href="#about"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition">About</a>
                     </li>
-                    <li>
-                        <a href="#about"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 transition">About</a>
-                    </li>
-                    <li>
-                        <a href="#pricing"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 transition">Pricing</a>
+                    <li><a href="#pricing"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 transition">Pricing</a>
                     </li>
                 </ul>
             </div>
@@ -122,10 +127,10 @@
 
     <main class="mt-16">
         <section
-            class="relative bg-gradient-to-b from-secondary to-white pt-20 pb-24 lg:pt-32 lg:pb-40 overflow-hidden">
+            class="relative bg-gradient-to-b from-secondary to-white dark:from-gray-900 dark:to-gray-800 pt-20 pb-24 lg:pt-32 lg:pb-40 overflow-hidden transition-colors duration-300">
             <div class="container mx-auto px-6 text-center relative z-10">
                 <div data-aos="fade-down"
-                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-8">
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary dark:text-purple-300 text-sm font-semibold mb-8">
                     <span class="relative flex h-2 w-2">
                         <span
                             class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
@@ -135,14 +140,14 @@
                 </div>
 
                 <h1 data-aos="fade-up" data-aos-delay="100"
-                    class="text-5xl md:text-7xl font-extrabold text-gray-900 tracking-tight mb-6 leading-tight">
+                    class="text-5xl md:text-7xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-6 leading-tight">
                     Upgrade your skills,<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">Advance
-                        your career.</span>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">Advance your
+                        career.</span>
                 </h1>
 
                 <p data-aos="fade-up" data-aos-delay="200"
-                    class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+                    class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
                     Learn from industry experts, master new skills, and achieve your goals at your own pace. Join
                     10,000+ learners today.
                 </p>
@@ -154,84 +159,84 @@
                         Explore Courses
                     </a>
                     <a href="#about"
-                        class="w-full sm:w-auto px-8 py-4 bg-white text-gray-700 border border-gray-200 rounded-xl font-semibold text-lg hover:bg-secondary hover:text-primary transform hover:-translate-y-1 transition duration-300">
+                        class="w-full sm:w-auto px-8 py-4 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 rounded-xl font-semibold text-lg hover:bg-secondary dark:hover:bg-gray-700 hover:text-primary transform hover:-translate-y-1 transition duration-300">
                         View Pricing
                     </a>
                 </div>
             </div>
 
             <div
-                class="absolute top-0 left-0 -ml-20 -mt-20 w-96 h-96 rounded-full bg-primary/30 mix-blend-multiply filter blur-3xl opacity-30 animate-blob">
+                class="absolute top-0 left-0 -ml-20 -mt-20 w-96 h-96 rounded-full bg-primary/30 mix-blend-multiply filter blur-3xl opacity-30 animate-blob dark:opacity-10">
             </div>
             <div
-                class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-purple-200 mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000">
+                class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-purple-200 mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000 dark:opacity-10">
             </div>
         </section>
 
-        <section class="py-12 bg-white border-y border-gray-100" data-aos="fade-in">
+        <section class="py-12 bg-white dark:bg-gray-900 border-y border-gray-100 dark:border-gray-800"
+            data-aos="fade-in">
             <div class="container mx-auto px-6">
                 <p class="text-center text-sm font-semibold text-gray-400 uppercase tracking-widest mb-8">Trusted by
                     innovative teams</p>
                 <div
                     class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                    <img class="h-8"
+                    <img class="h-8 dark:invert"
                         src="https://tailwindcss.com/plus-assets/img/logos/158x48/transistor-logo-gray-900.svg"
                         alt="Transistor">
-                    <img class="h-8" src="https://tailwindcss.com/plus-assets/img/logos/158x48/reform-logo-gray-900.svg"
+                    <img class="h-8 dark:invert"
+                        src="https://tailwindcss.com/plus-assets/img/logos/158x48/reform-logo-gray-900.svg"
                         alt="Reform">
-                    <img class="h-8" src="https://tailwindcss.com/plus-assets/img/logos/158x48/tuple-logo-gray-900.svg"
-                        alt="Tuple">
-                    <img class="h-8"
+                    <img class="h-8 dark:invert"
+                        src="https://tailwindcss.com/plus-assets/img/logos/158x48/tuple-logo-gray-900.svg" alt="Tuple">
+                    <img class="h-8 dark:invert"
                         src="https://tailwindcss.com/plus-assets/img/logos/158x48/savvycal-logo-gray-900.svg"
                         alt="SavvyCal">
-                    <img class="h-8"
+                    <img class="h-8 dark:invert"
                         src="https://tailwindcss.com/plus-assets/img/logos/158x48/statamic-logo-gray-900.svg"
                         alt="Statamic">
                 </div>
             </div>
         </section>
 
-        <section id="courses" class="py-20 bg-secondary relative overflow-hidden">
-            <div class="absolute inset-0 opacity-40"
+        <section id="courses"
+            class="py-20 bg-secondary dark:bg-gray-900 relative overflow-hidden transition-colors duration-300">
+            <div class="absolute inset-0 opacity-40 dark:opacity-20"
                 style="background-image: radial-gradient(#8487BF 1px, transparent 1px); background-size: 24px 24px;">
             </div>
 
             <div class="container mx-auto px-6 relative z-10">
                 <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Trending Now</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">Discover our highest-rated courses, handpicked for you
-                        based on current industry trends.</p>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-4">Trending Now</h2>
+                    <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Discover our highest-rated courses,
+                        handpicked for you based on current industry trends.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div data-aos="fade-up" data-aos-duration="1000"
-                        class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col h-full">
+                        class="group bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 overflow-hidden flex flex-col h-full">
                         <div class="relative overflow-hidden h-48">
                             <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=1000&auto=format&fit=crop"
-                                alt="Python Coding"
                                 class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                             <div
-                                class="absolute top-4 right-4 bg-white px-2 py-1 rounded-md text-xs font-bold text-gray-900 shadow-sm">
-                                Best Seller
-                            </div>
+                                class="absolute top-4 right-4 bg-white dark:bg-gray-900 px-2 py-1 rounded-md text-xs font-bold text-gray-900 dark:text-white shadow-sm">
+                                Best Seller</div>
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
                             <div class="flex items-center gap-2 mb-3">
                                 <span
-                                    class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Development</span>
-                                <div class="flex text-yellow-400 text-xs">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded">Development</span>
+                                <div class="flex text-yellow-400 text-xs"><i class="fa-solid fa-star"></i><i
                                         class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                        class="fa-solid fa-star"></i>
-                                </div>
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                                 <span class="text-gray-400 text-xs">(4.9)</span>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition">Python
-                                for Beginners</h3>
-                            <p class="text-gray-600 text-sm mb-4 line-clamp-2">Master Python from scratch. Automate
-                                tasks, build apps, and analyze data.</p>
+                            <h3
+                                class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition">
+                                Python for Beginners</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">Master Python from
+                                scratch. Automate tasks, build apps, and analyze data.</p>
                             <div
-                                class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center text-sm text-gray-500">
+                                class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
                                 <span><i class="fa-regular fa-clock mr-1"></i> 8h 30m</span>
                                 <span><i class="fa-solid fa-video mr-1"></i> 18 Lessons</span>
                             </div>
@@ -239,29 +244,27 @@
                     </div>
 
                     <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"
-                        class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col h-full">
+                        class="group bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 overflow-hidden flex flex-col h-full">
                         <div class="relative overflow-hidden h-48">
                             <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1000&auto=format&fit=crop"
-                                alt="AI Productivity"
                                 class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
                             <div class="flex items-center gap-2 mb-3">
                                 <span
-                                    class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Productivity</span>
-                                <div class="flex text-yellow-400 text-xs">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 text-xs font-medium px-2.5 py-0.5 rounded">Productivity</span>
+                                <div class="flex text-yellow-400 text-xs"><i class="fa-solid fa-star"></i><i
                                         class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                        class="fa-solid fa-star"></i>
-                                </div>
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                                 <span class="text-gray-400 text-xs">(5.0)</span>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition">AI for
-                                Everyone</h3>
-                            <p class="text-gray-600 text-sm mb-4 line-clamp-2">Leverage ChatGPT and AI tools to 10x your
-                                daily productivity.</p>
+                            <h3
+                                class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition">
+                                AI for Everyone</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">Leverage ChatGPT and
+                                AI tools to 10x your daily productivity.</p>
                             <div
-                                class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center text-sm text-gray-500">
+                                class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
                                 <span><i class="fa-regular fa-clock mr-1"></i> 12h 15m</span>
                                 <span><i class="fa-solid fa-video mr-1"></i> 21 Lessons</span>
                             </div>
@@ -269,135 +272,61 @@
                     </div>
 
                     <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
-                        class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col h-full">
+                        class="group bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 overflow-hidden flex flex-col h-full">
                         <div class="relative overflow-hidden h-48">
                             <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1000&auto=format&fit=crop"
-                                alt="Mobile App Dev"
                                 class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
                             <div class="flex items-center gap-2 mb-3">
                                 <span
-                                    class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Mobile</span>
-                                <div class="flex text-yellow-400 text-xs">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 text-xs font-medium px-2.5 py-0.5 rounded">Mobile</span>
+                                <div class="flex text-yellow-400 text-xs"><i class="fa-solid fa-star"></i><i
                                         class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                        class="fa-solid fa-star-half-stroke"></i>
-                                </div>
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
                                 <span class="text-gray-400 text-xs">(4.8)</span>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition">iOS &
-                                Android Bootcamp</h3>
-                            <p class="text-gray-600 text-sm mb-4 line-clamp-2">Build real mobile apps using React Native
-                                and Flutter. Launch your startup.</p>
+                            <h3
+                                class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition">
+                                iOS & Android Bootcamp</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">Build real mobile apps
+                                using React Native and Flutter. Launch your startup.</p>
                             <div
-                                class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center text-sm text-gray-500">
+                                class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
                                 <span><i class="fa-regular fa-clock mr-1"></i> 13h 05m</span>
                                 <span><i class="fa-solid fa-video mr-1"></i> 42 Lessons</span>
                             </div>
                         </div>
                     </div>
-
-                    <div data-aos="fade-up" data-aos-duration="1000"
-                        class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col h-full">
-                        <div class="relative overflow-hidden h-48">
-                            <img src="https://images.unsplash.com/photo-1593720213428-28a5b9e94613?q=80&w=1000&auto=format&fit=crop"
-                                alt="HTML CSS and JavaScript code on screen"
-                                class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <div class="flex items-center gap-2 mb-3">
-                                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Web
-                                    Dev</span>
-                                <div class="flex text-yellow-400 text-xs">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                        class="fa-solid fa-star"></i>
-                                </div>
-                                <span class="text-gray-400 text-xs">(5.0)</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition">
-                                Introduction to HTML, CSS, & JavaScript</h3>
-                            <p class="text-gray-600 text-sm mb-4 line-clamp-2">Skills you'll gain: Responsive Web
-                                Design, Cascading Style Sheets (CSS), Web Development...</p>
-                            <div
-                                class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center text-sm text-gray-500">
-                                <span><i class="fa-regular fa-clock mr-1"></i> 10h 13m</span>
-                                <span><i class="fa-solid fa-video mr-1"></i> 24 Lessons</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-20 bg-white">
+        <section class="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
             <div class="container mx-auto px-6">
-                <h2 data-aos="fade-down" class="text-3xl font-extrabold text-gray-900 text-center mb-12">Expert-Led
-                    Featured Courses</h2>
+                <h2 data-aos="fade-down"
+                    class="text-3xl font-extrabold text-gray-900 dark:text-white text-center mb-12">Expert-Led Featured
+                    Courses</h2>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div data-aos="fade-left"
-                        class="flex flex-col p-6 bg-secondary rounded-2xl border border-gray-100 hover:border-primary/40 transition duration-300">
+                        class="flex flex-col p-6 bg-secondary dark:bg-gray-700 rounded-2xl border border-gray-100 dark:border-gray-600 hover:border-primary/40 transition duration-300">
                         <div class="flex items-center justify-between mb-4">
                             <span class="px-3 py-1 text-xs font-semibold text-primary bg-primary/20 rounded-full">Web
                                 Dev</span>
-                            <span class="text-gray-500 text-sm">12 Modules</span>
+                            <span class="text-gray-500 dark:text-gray-300 text-sm">12 Modules</span>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-primary cursor-pointer">The Complete
-                            2025 Web Dev Bootcamp</h3>
-                        <p class="text-gray-600 text-sm mb-6 flex-grow">Become a full-stack developer. Learn HTML, CSS,
-                            Javascript, React, Node.js, and more.</p>
+                        <h3
+                            class="text-xl font-bold text-gray-900 dark:text-white mb-3 hover:text-primary cursor-pointer">
+                            The Complete 2025 Web Dev Bootcamp</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-6 flex-grow">Become a full-stack
+                            developer. Learn HTML, CSS, Javascript, React, Node.js, and more.</p>
                         <div class="flex items-center mt-4">
                             <img class="w-10 h-10 rounded-full border-2 border-white shadow-sm" src="./img/sila.jpg"
-                                alt="Sila SEM Avatar">
+                                alt="Sila SEM">
                             <div class="ml-3">
-                                <p class="text-sm font-semibold text-gray-900">Sila SEM</p>
-                                <p class="text-xs text-gray-500">Lead Instructor</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div data-aos="fade-left" data-aos-delay="100"
-                        class="flex flex-col p-6 bg-secondary rounded-2xl border border-gray-100 hover:border-primary/40 transition duration-300">
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="px-3 py-1 text-xs font-semibold text-pink-600 bg-pink-100 rounded-full">Data
-                                Science</span>
-                            <span class="text-gray-500 text-sm">15 Modules</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-primary cursor-pointer">Data Science
-                            & ML with Python</h3>
-                        <p class="text-gray-600 text-sm mb-6 flex-grow">Analyze data, visualize trends, and build
-                            predictive machine learning models.</p>
-                        <div class="flex items-center mt-4">
-                            <img class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
-                                src="https://i.pinimg.com/736x/2a/cf/9a/2acf9a571bfc454d37877e2c5a136bda.jpg"
-                                alt="Avatar">
-                            <div class="ml-3">
-                                <p class="text-sm font-semibold text-gray-900">Dara HENG</p>
-                                <p class="text-xs text-gray-500">Data Scientist</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div data-aos="fade-left" data-aos-delay="200"
-                        class="flex flex-col p-6 bg-secondary rounded-2xl border border-gray-100 hover:border-primary/40 transition duration-300">
-                        <div class="flex items-center justify-between mb-4">
-                            <span
-                                class="px-3 py-1 text-xs font-semibold text-teal-600 bg-teal-100 rounded-full">Marketing</span>
-                            <span class="text-gray-500 text-sm">10 Modules</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 hover:text-primary cursor-pointer">Digital
-                            Marketing Masterclass</h3>
-                        <p class="text-gray-600 text-sm mb-6 flex-grow">Grow any business with our comprehensive guide
-                            to SEO, Social Media, and Ads.</p>
-                        <div class="flex items-center mt-4">
-                            <img class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
-                                src="https://i.pinimg.com/1200x/f1/8f/3c/f18f3c39b196ebfdf6ecf7ca543691c6.jpg"
-                                alt="Sodalin Avatar">
-                            <div class="ml-3">
-                                <p class="text-sm font-semibold text-gray-900">Sodalin SUN</p>
-                                <p class="text-xs text-gray-500">Marketing Expert</p>
+                                <p class="text-sm font-semibold text-gray-900 dark:text-white">Sila SEM</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">Lead Instructor</p>
                             </div>
                         </div>
                     </div>
@@ -405,7 +334,8 @@
             </div>
         </section>
 
-        <section id="about" class="py-20 bg-gradient-to-b from-secondary to-white relative overflow-hidden">
+        <section id="about"
+            class="py-20 bg-gradient-to-b from-secondary to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden transition-colors duration-300">
             <div class="absolute inset-0 opacity-30"
                 style="background-image: radial-gradient(#8487BF 1px, transparent 1px); background-size: 32px 32px;">
             </div>
@@ -413,36 +343,33 @@
             <div class="container mx-auto px-6 relative z-10">
                 <div class="max-w-4xl mx-auto">
                     <div class="text-center mb-16" data-aos="fade-up">
-                        <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">Built for Learners, By Learners
-                        </h2>
-                        <p class="text-xl text-gray-600">Our mission is to make professional-level education accessible
-                            to anyone, anywhere.</p>
+                        <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Built for
+                            Learners, By Learners</h2>
+                        <p class="text-xl text-gray-600 dark:text-gray-300">Our mission is to make professional-level
+                            education accessible to anyone, anywhere.</p>
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-12 items-start">
-                        <div data-aos="fade-right" class="bg-white p-8 rounded-2xl border border-gray-200 shadow-xl">
+                        <div data-aos="fade-right"
+                            class="bg-white dark:bg-gray-800 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-xl">
                             <h3 class="text-2xl font-bold text-primary mb-4">My Story</h3>
-                            <p class="text-gray-600 leading-relaxed mb-4">
-                                I founded this platform in 2025 with a simple idea: bridge the gap between expensive
-                                degrees and affordable skills.
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">I founded this platform in
+                                2025 with a simple idea: bridge the gap between expensive degrees and affordable skills.
                             </p>
-                            <p class="text-gray-600 leading-relaxed">
-                                I'm Sila, a lifelong learner passionate about technology, coding, and finance. I believe
-                                in explaining complex topics in simple ways. When I'm not coding, I'm playing chess or
-                                solving Rubik's cubes.
-                            </p>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">I'm Sila, a lifelong learner
+                                passionate about technology...</p>
                         </div>
 
                         <div data-aos="fade-left" class="space-y-8">
                             <div>
                                 <h3 class="text-xl font-bold text-primary mb-2">My Vision</h3>
-                                <p class="text-gray-600">To build a vibrant, inclusive global community where education
-                                    is a shared journey.</p>
+                                <p class="text-gray-600 dark:text-gray-300">To build a vibrant, inclusive global
+                                    community...</p>
                             </div>
-                            <div class="h-px bg-gray-200"></div>
+                            <div class="h-px bg-gray-200 dark:bg-gray-700"></div>
                             <div>
                                 <h3 class="text-xl font-bold text-primary mb-2">Core Values</h3>
-                                <ul class="space-y-2 text-gray-600">
+                                <ul class="space-y-2 text-gray-600 dark:text-gray-300">
                                     <li class="flex items-center"><i class="fa-solid fa-check text-primary mr-2"></i>
                                         Accessibility for all</li>
                                     <li class="flex items-center"><i class="fa-solid fa-check text-primary mr-2"></i>
@@ -457,97 +384,124 @@
             </div>
         </section>
 
-        <footer class="bg-secondary pt-20 pb-10">
+        <footer class="bg-secondary dark:bg-gray-900 pt-20 pb-10 transition-colors duration-300">
             <div class="container mx-auto px-6">
-                <section id="contact" class="py-20 bg-secondary relative overflow-hidden">
-                    <div class="absolute inset-0 opacity-40"
+                <section id="contact" class="py-20 bg-secondary dark:bg-gray-900 relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-40 dark:opacity-10"
                         style="background-image: radial-gradient(#8487BF 1px, transparent 1px); background-size: 24px 24px;">
                     </div>
 
                     <div class="container mx-auto px-6 relative z-10">
                         <div class="text-center mb-10" data-aos="fade-down">
-                            <h2 class="text-4xl font-extrabold text-gray-900 mb-4">Get in Touch</h2>
-                            <p class="text-lg text-gray-600">We'd love to hear from you. Send us a message below.</p>
+                            <h2 class="text-4xl font-extrabold text-gray-900 dark:text-white mb-4">Get in Touch</h2>
+                            <p class="text-lg text-gray-600 dark:text-gray-400">We'd love to hear from you. Send us a
+                                message below.</p>
                         </div>
 
                         <div data-aos="zoom-in-up" data-aos-duration="1000"
-                            class="max-w-2xl mx-auto bg-white p-8 md:p-12 rounded-3xl border border-gray-200 shadow-xl">
+                            class="max-w-2xl mx-auto bg-white dark:bg-gray-800 p-8 md:p-12 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-xl">
                             <form class="flex flex-col gap-6">
                                 <div class="flex flex-col">
-                                    <label for="name" class="mb-2 font-semibold text-gray-700">Your Name</label>
+                                    <label for="name" class="mb-2 font-semibold text-gray-700 dark:text-gray-300">Your
+                                        Name</label>
                                     <input type="text" id="name" placeholder="Enter your name..."
-                                        class="w-full px-4 py-3 rounded-lg bg-secondary border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent text-gray-900 placeholder-gray-400 outline-none transition"
+                                        class="w-full px-4 py-3 rounded-lg bg-secondary dark:bg-gray-700 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-primary focus:border-transparent text-gray-900 dark:text-white placeholder-gray-400 outline-none transition"
                                         required>
                                 </div>
                                 <div class="flex flex-col">
-                                    <label for="email" class="mb-2 font-semibold text-gray-700">Email Address</label>
+                                    <label for="email" class="mb-2 font-semibold text-gray-700 dark:text-gray-300">Email
+                                        Address</label>
                                     <div class="relative">
                                         <div
                                             class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                            <i class="fa-regular fa-envelope text-gray-400"></i>
-                                        </div>
+                                            <i class="fa-regular fa-envelope text-gray-400"></i></div>
                                         <input type="email" id="email" placeholder="you@example.com"
-                                            class="w-full pl-10 px-4 py-3 rounded-lg bg-secondary border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent text-gray-900 placeholder-gray-400 outline-none transition"
+                                            class="w-full pl-10 px-4 py-3 rounded-lg bg-secondary dark:bg-gray-700 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-primary text-gray-900 dark:text-white outline-none transition"
                                             required>
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
-                                    <label for="message" class="mb-2 font-semibold text-gray-700">Message</label>
+                                    <label for="message"
+                                        class="mb-2 font-semibold text-gray-700 dark:text-gray-300">Message</label>
                                     <textarea id="message" rows="5" placeholder="How can we help you?"
-                                        class="w-full px-4 py-3 rounded-lg bg-secondary border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent text-gray-900 placeholder-gray-400 outline-none transition resize-none"
+                                        class="w-full px-4 py-3 rounded-lg bg-secondary dark:bg-gray-700 border border-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-primary text-gray-900 dark:text-white outline-none transition resize-none"
                                         required></textarea>
                                 </div>
                                 <button type="submit"
-                                    class="bg-primary text-white px-6 py-4 rounded-xl font-bold text-lg hover:bg-primary/90 transform hover:-translate-y-1 transition duration-300 flex items-center justify-center gap-2 shadow-lg shadow-primary/30">
-                                    Send Message <i class="fa-solid fa-paper-plane"></i>
-                                </button>
+                                    class="bg-primary text-white px-6 py-4 rounded-xl font-bold text-lg hover:bg-primary/90 transform hover:-translate-y-1 transition duration-300 flex items-center justify-center gap-2 shadow-lg">Send
+                                    Message <i class="fa-solid fa-paper-plane"></i></button>
                             </form>
                         </div>
                     </div>
                 </section>
 
                 <div
-                    class="flex flex-col md:flex-row justify-between items-center border-b border-gray-200 pb-10 mb-10">
+                    class="flex flex-col md:flex-row justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-10 mb-10">
                     <a href="#" class="flex items-center space-x-2 mb-4 md:mb-0">
                         <div class="w-8 h-8 bg-primary rounded-md flex items-center justify-center text-white text-sm">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                        </div>
-                        <span class="text-xl font-bold text-gray-900">Learnify</span>
+                            <i class="fa-solid fa-graduation-cap"></i></div>
+                        <span class="text-xl font-bold text-gray-900 dark:text-white">Learnify</span>
                     </a>
-
                     <div class="flex space-x-6">
-                        <a href="https://www.facebook.com" target="_blank"
-                            class="text-gray-400 hover:text-primary transition text-xl"><i
+                        <a href="#" class="text-gray-400 hover:text-primary transition text-xl"><i
                                 class="fa-brands fa-facebook"></i></a>
-                        <a href="https://www.instagram.com" target="_blank"
-                            class="text-gray-400 hover:text-pink-600 transition text-xl"><i
+                        <a href="#" class="text-gray-400 hover:text-pink-600 transition text-xl"><i
                                 class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com" target="_blank"
-                            class="text-gray-400 hover:text-blue-600 transition text-xl"><i
+                        <a href="#" class="text-gray-400 hover:text-blue-600 transition text-xl"><i
                                 class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://github.com" target="_blank"
-                            class="text-gray-400 hover:text-gray-900 transition text-xl"><i
+                        <a href="#"
+                            class="text-gray-400 hover:text-gray-900 dark:hover:text-white transition text-xl"><i
                                 class="fa-brands fa-github"></i></a>
                     </div>
                 </div>
-
-                <div class="text-center text-gray-500 text-sm">
-                    &copy; 2025 Learnify E-learning Platform. All rights reserved. Created by Sila.
-                </div>
+                <div class="text-center text-gray-500 text-sm">&copy; 2025 Learnify E-learning Platform. All rights
+                    reserved. Created by Sila.</div>
             </div>
         </footer>
-
     </main>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800, // Animation duration in milliseconds
-            once: true,    // Whether animation should happen only once
+        AOS.init({ duration: 800, once: true });
+
+        // --- DARK MODE LOGIC ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Check initial state
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function () {
+            // Toggle icons
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            // Toggle Dark Mode Class
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
         });
 
-        // Mobile menu toggle logic
+        // --- MOBILE MENU LOGIC ---
         const btn = document.getElementById('mobile-menu-button');
         const menu = document.getElementById('navbar-sticky');
         const hamburgerIcon = document.getElementById('hamburger-icon');
