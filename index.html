@@ -590,11 +590,12 @@
 
         // --- TELEGRAM FORM LOGIC ---
 
-        function sendToTelegram(event) {
-            event.preventDefault(); // Stop page reload
 
-            const botToken = "7522747677:AAFf5uSN3ULEK24c_870o9G-mVLBuZbS_R8"; // Paste Token from BotFather
-            const chatId = "1543040976";     // Paste ID from userinfobot
+        function sendToTelegram(event) {
+            event.preventDefault();
+
+            const botToken = "7522747677:AAFf5uSN3ULEK24c_870o9G-mVLBuZbS_R8";
+            const chatId = "1543040976";
 
             const name = document.getElementById("name").value;
             const email = document.getElementById("email").value;
@@ -602,19 +603,31 @@
             const submitBtn = document.getElementById("submitBtn");
             const statusMessage = document.getElementById("statusMessage");
 
-            // Format the message for Telegram
-            const text = `
-📩 *New Contact Message* 📩
-👤 *Name:* ${name}
-📧 *Email:* ${email}
-📝 *Message:* ${message}
-        `;
+            // Get current date for the email header
+            const date = new Date().toLocaleString();
 
-            // Disable button to prevent double clicks
+            // --- NEW PROFESSIONAL EMAIL FORMAT ---
+            const text = `
+*Subject: New Inquiry via Learnify Website*
+
+*From:* ${name}
+*Email:* \`${email}\`
+*Date:* ${date}
+
+----------------------------------------
+
+*Message:*
+
+${message}
+
+----------------------------------------
+_This is an automated notification sent from your website contact form._
+        `;
+            // -------------------------------------
+
             submitBtn.disabled = true;
             submitBtn.innerHTML = "Sending... <i class='fa-solid fa-spinner fa-spin'></i>";
 
-            // Send to Telegram API
             const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
             fetch(url, {
@@ -631,7 +644,7 @@
                         statusMessage.textContent = "Message sent successfully!";
                         statusMessage.classList.remove("hidden", "text-red-500");
                         statusMessage.classList.add("text-green-500");
-                        document.getElementById("telegramForm").reset(); // Clear form
+                        document.getElementById("telegramForm").reset();
                     } else {
                         throw new Error("Telegram API Error");
                     }
@@ -643,7 +656,6 @@
                     console.error(error);
                 })
                 .finally(() => {
-                    // Re-enable button after 2 seconds
                     setTimeout(() => {
                         submitBtn.disabled = false;
                         submitBtn.innerHTML = "Send Message <i class='fa-solid fa-paper-plane'></i>";
