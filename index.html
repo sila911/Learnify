@@ -591,6 +591,7 @@
         // --- TELEGRAM FORM LOGIC ---
 
 
+
         function sendToTelegram(event) {
             event.preventDefault();
 
@@ -603,27 +604,28 @@
             const submitBtn = document.getElementById("submitBtn");
             const statusMessage = document.getElementById("statusMessage");
 
-            // Get current date for the email header
-            const date = new Date().toLocaleString();
+            // --- NEW DATE FORMATTING LOGIC ---
+            const now = new Date();
+            const month = now.toLocaleString('en-US', { month: 'short' }); // "Jan"
+            const day = String(now.getDate()).padStart(2, '0');            // "05"
+            const year = now.getFullYear();                                // "2026"
+            const time = now.toLocaleTimeString('en-US');                  // "2:57:29 PM"
 
-            // --- NEW PROFESSIONAL EMAIL FORMAT ---
+            const date = `${month}/${day}/${year}, ${time}`;
+            // ---------------------------------
+
             const text = `
-*Subject: New Inquiry via Learnify Website*
+                *Subject: New Inquiry via Learnify Website*
 
-*From:* ${name}
-*Email:* \`${email}\`
-*Date:* ${date}
-
-----------------------------------------
-
-*Message:*
-
-${message}
-
-----------------------------------------
-_This is an automated notification sent from your website contact form._
-        `;
-            // -------------------------------------
+                *From:* ${name}
+                *Email:* \`${email}\`
+                *Date:* ${date}
+                ----------------------------------------
+                *Message:*
+                ${message}
+                ----------------------------------------
+                _This is an automated notification sent from Learnify website contact form._
+            `;
 
             submitBtn.disabled = true;
             submitBtn.innerHTML = "Sending... <i class='fa-solid fa-spinner fa-spin'></i>";
@@ -663,6 +665,7 @@ _This is an automated notification sent from your website contact form._
                 });
         }
 
+    </script
     </script>
 </body>
 
