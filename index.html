@@ -455,7 +455,7 @@
 
                         <div data-aos="zoom-in-up" data-aos-duration="1000"
                             class="max-w-2xl mx-auto bg-white dark:bg-gray-800 p-8 md:p-12 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-xl">
-                            <form class="flex flex-col gap-6">
+                            <form id="telegramForm" onsubmit="sendToTelegram(event)" class="flex flex-col gap-6">
 
                                 <div class="flex flex-col">
                                     <label for="name" class="mb-2 font-semibold text-gray-700 dark:text-gray-300">Your
@@ -487,9 +487,12 @@
                                         required></textarea>
                                 </div>
 
-                                <button type="submit"
-                                    class="bg-primary text-white px-6 py-4 rounded-xl font-bold text-lg hover:bg-primary/90 transform hover:-translate-y-1 transition duration-300 flex items-center justify-center gap-2 shadow-lg">Send
-                                    Message <i class="fa-solid fa-paper-plane"></i></button>
+                                <button type="submit" id="submitBtn"
+                                    class="bg-primary text-white px-6 py-4 rounded-xl font-bold text-lg hover:bg-primary/90 transform hover:-translate-y-1 transition duration-300 flex items-center justify-center gap-2 shadow-lg">
+                                    Send Message <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+
+                                <p id="statusMessage" class="text-center text-sm font-semibold mt-2 hidden"></p>
                             </form>
                         </div>
                     </div>
@@ -583,6 +586,71 @@
                 }
             });
         });
+
+
+        // --- TELEGRAM FORM LOGIC ---
+
+        function sendToTelegram(event) {
+            event.preventDefault(); // Stop page reload
+
+            const botToken = "7522747677:AAFf5uSN3ULEK24c_870o9G-mVLBuZbS_R8"; // Paste Token from BotFather
+            const chatId = "1543040976";     // Paste ID from userinfobot
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+            const submitBtn = document.getElementById("submitBtn");
+            const statusMessage = document.getElementById("statusMessage");
+
+            // Format the message for Telegram
+            const text = `
+📩 *New Contact Message* 📩
+👤 *Name:* ${name}
+📧 *Email:* ${email}
+📝 *Message:* ${message}
+        `;
+
+            // Disable button to prevent double clicks
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "Sending... <i class='fa-solid fa-spinner fa-spin'></i>";
+
+            // Send to Telegram API
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: text,
+                    parse_mode: 'Markdown'
+                })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        statusMessage.textContent = "Message sent successfully!";
+                        statusMessage.classList.remove("hidden", "text-red-500");
+                        statusMessage.classList.add("text-green-500");
+                        document.getElementById("telegramForm").reset(); // Clear form
+                    } else {
+                        throw new Error("Telegram API Error");
+                    }
+                })
+                .catch(error => {
+                    statusMessage.textContent = "Failed to send. Please try again.";
+                    statusMessage.classList.remove("hidden", "text-green-500");
+                    statusMessage.classList.add("text-red-500");
+                    console.error(error);
+                })
+                .finally(() => {
+                    // Re-enable button after 2 seconds
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = "Send Message <i class='fa-solid fa-paper-plane'></i>";
+                    }, 2000);
+                });
+        }
+
     </script>
 </body>
 
