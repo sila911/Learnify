@@ -527,146 +527,52 @@
         </footer>
     </main>
 
+    // Success Modal | Show on successful form submission
+    <div id="successModal" class="fixed inset-0 z-[60] hidden" aria-labelledby="modal-title" role="dialog"
+        aria-modal="true">
+
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity backdrop-blur-sm"></div>
+
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+
+                <div
+                    class="relative transform overflow-hidden rounded-lg bg-white dark:bg-gray-800 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg p-10">
+
+                    <div class="absolute top-0 right-0 pt-4 pr-4">
+                        <button type="button" onclick="closeModal()"
+                            class="rounded-md bg-white dark:bg-gray-800 text-gray-400 hover:text-gray-500 focus:outline-none">
+                            <span class="sr-only">Close</span>
+                            <i class="fa-solid fa-xmark text-2xl"></i>
+                        </button>
+                    </div>
+
+                    <div class="sm:flex sm:items-start">
+                        <div
+                            class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+                            <i class="fa-solid fa-check text-green-600"></i>
+                        </div>
+
+                        <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
+                            <h3 class="text-xl font-semibold leading-6 text-gray-900 dark:text-white" id="modal-title">
+                                Message Sent Successfully!
+                            </h3>
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500 dark:text-gray-300">
+                                    Thank you for contacting Learnify. We have received your message and will get back
+                                    to you shortly.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // AOS Initialize
-        AOS.init({ duration: 800, once: true });
-
-        // --- DARK MODE LOGIC ---
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
-        // Check initial state
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            themeToggleLightIcon.classList.remove('hidden');
-        } else {
-            themeToggleDarkIcon.classList.remove('hidden');
-        }
-
-        themeToggleBtn.addEventListener('click', function () {
-            // Toggle icons
-            themeToggleDarkIcon.classList.toggle('hidden');
-            themeToggleLightIcon.classList.toggle('hidden');
-
-            // Toggle Dark Mode Class
-            if (localStorage.getItem('color-theme')) {
-                if (localStorage.getItem('color-theme') === 'light') {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                }
-            } else {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                }
-            }
-        });
-
-        // --- MOBILE MENU LOGIC ---
-        const btn = document.getElementById('mobile-menu-button');
-        const menu = document.getElementById('navbar-sticky');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // Close menu when clicking a link (mobile UX improvement)
-        const mobileLinks = menu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (!menu.classList.contains('hidden')) {
-                    menu.classList.add('hidden');
-                }
-            });
-        });
-
-
-        // --- TELEGRAM FORM LOGIC ---
-
-
-
-        function sendToTelegram(event) {
-            event.preventDefault();
-
-            const botToken = "7522747677:AAFf5uSN3ULEK24c_870o9G-mVLBuZbS_R8";
-            const chatId = "1543040976";
-
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const message = document.getElementById("message").value;
-            const submitBtn = document.getElementById("submitBtn");
-            const statusMessage = document.getElementById("statusMessage");
-
-            // --- NEW DATE FORMATTING LOGIC ---
-            const now = new Date();
-            const month = now.toLocaleString('en-US', { month: 'short' }); // "Jan"
-            const day = String(now.getDate()).padStart(2, '0');            // "05"
-            const year = now.getFullYear();                                // "2026"
-            const time = now.toLocaleTimeString('en-US');                  // "2:57:29 PM"
-
-            const date = `${month}/${day}/${year}, ${time}`;
-            // ---------------------------------
-
-            const text = `
-                *Subject: New Inquiry via Learnify Website*
-
-                *From:* ${name}
-                *Email:* \`${email}\`
-                *Date:* ${date}
-                ----------------------------------------
-                *Message:*
-                ${message}
-                ----------------------------------------
-                _This is an automated notification sent from Learnify website contact form._
-            `;
-
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = "Sending... <i class='fa-solid fa-spinner fa-spin'></i>";
-
-            const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
-            fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: text,
-                    parse_mode: 'Markdown'
-                })
-            })
-                .then(response => {
-                    if (response.ok) {
-                        statusMessage.textContent = "Message sent successfully!";
-                        statusMessage.classList.remove("hidden", "text-red-500");
-                        statusMessage.classList.add("text-green-500");
-                        document.getElementById("telegramForm").reset();
-                    } else {
-                        throw new Error("Telegram API Error");
-                    }
-                })
-                .catch(error => {
-                    statusMessage.textContent = "Failed to send. Please try again.";
-                    statusMessage.classList.remove("hidden", "text-green-500");
-                    statusMessage.classList.add("text-red-500");
-                    console.error(error);
-                })
-                .finally(() => {
-                    setTimeout(() => {
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = "Send Message <i class='fa-solid fa-paper-plane'></i>";
-                    }, 2000);
-                });
-        }
-
-    </script
-    </script>
+    <script src="./js/contact-form.js"></script>
+    <script src="./js/animations.js"></script>
 </body>
 
 </html>
