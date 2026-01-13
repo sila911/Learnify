@@ -73,9 +73,10 @@
                             <span><i class="fa-solid fa-signal mr-1"></i> Beginner Level</span>
                         </p>
                     </div>
-                    <button
-                        class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-700 transition">
-                        <i class="fa-regular fa-bookmark"></i> Save
+                    <button id="save-course-btn" onclick="saveCurrentCourse()"
+                        class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-700 transition flex items-center gap-2">
+                        <i class="fa-regular fa-bookmark" id="save-icon"></i>
+                        <span id="save-text">Save</span>
                     </button>
                 </div>
 
@@ -110,8 +111,8 @@
                     <div class="p-5 border-b border-gray-700 bg-gray-800">
                         <h3 class="font-bold text-lg mb-1">Course Content</h3>
                         <div class="flex justify-between text-xs text-gray-400">
-                            <span>12 Lessons</span>
-                            <span>2h 14m Total</span>
+                            <span>15 Lessons</span>
+                            <span>9h 14m Total</span>
                         </div>
 
                         <div class="w-full bg-gray-700 rounded-full h-1.5 mt-3">
@@ -199,6 +200,67 @@
     </footer>
 
     <script>
+
+
+        // --- SAVE COURSE LOGIC ---
+        function saveCurrentCourse() {
+            // 1. Define the course data (You can make this dynamic later)
+            const courseData = {
+                id: 'python-101', // Unique ID
+                title: 'Introduction to Python',
+                lessons: '15 Lessons',
+                duration: '9h 14m',
+                image: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=300',
+                link: 'course-detail.html'
+            };
+
+            // 2. Get existing saved courses from LocalStorage
+            let savedCourses = JSON.parse(localStorage.getItem('learnify_saved')) || [];
+
+            // 3. Check if already saved
+            const isSaved = savedCourses.some(course => course.id === courseData.id);
+
+            if (isSaved) {
+                // OPTIONAL: If already saved, remove it (Toggle off)
+                savedCourses = savedCourses.filter(course => course.id !== courseData.id);
+                updateSaveButtonUI(false);
+                alert("Course removed from Saved list.");
+            } else {
+                // Add new course
+                savedCourses.push(courseData);
+                updateSaveButtonUI(true);
+                alert("Course saved successfully! Check your list on the Home page.");
+            }
+
+            // 4. Save back to LocalStorage
+            localStorage.setItem('learnify_saved', JSON.stringify(savedCourses));
+        }
+
+        // Update Button Style (Solid icon if saved)
+        function updateSaveButtonUI(isSaved) {
+            const icon = document.getElementById('save-icon');
+            const text = document.getElementById('save-text');
+
+            if (isSaved) {
+                icon.classList.remove('fa-regular');
+                icon.classList.add('fa-solid', 'text-accent'); // Solid Icon
+                text.innerText = "Saved";
+                text.classList.add('text-accent');
+            } else {
+                icon.classList.remove('fa-solid', 'text-accent');
+                icon.classList.add('fa-regular');
+                text.innerText = "Save";
+                text.classList.remove('text-accent');
+            }
+        }
+
+        // Check status on page load
+        window.onload = function () {
+            let savedCourses = JSON.parse(localStorage.getItem('learnify_saved')) || [];
+            const isSaved = savedCourses.some(course => course.id === 'python-101');
+            if (isSaved) updateSaveButtonUI(true);
+        };
+
         function changeVideo(videoId, title, element) {
             // 1. Change Video Source
             // 'rel=0' hides related videos from other channels

@@ -84,6 +84,11 @@
                     </svg>
                 </button>
 
+                <button onclick="toggleSavedPanel()"
+                    class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-700 transition">
+                    <i class="fa-regular fa-bookmark"></i> Save
+                </button>
+
                 <button type="button"
                     class="text-white bg-primary hover:bg-primary/90 focus:ring-4 focus:outline-none focus:ring-primary/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all shadow-md hover:shadow-lg">
                     Get Started
@@ -541,18 +546,13 @@
         </footer>
     </main>
 
-    // Success Modal | Show on successful form submission
     <div id="successModal" class="fixed inset-0 z-[60] hidden" aria-labelledby="modal-title" role="dialog"
         aria-modal="true">
-
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity backdrop-blur-sm"></div>
-
         <div class="fixed inset-0 z-10 overflow-y-auto">
             <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
-
                 <div
                     class="relative transform overflow-hidden rounded-lg bg-white dark:bg-gray-800 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg p-10">
-
                     <div class="absolute top-0 right-0 pt-4 pr-4">
                         <button type="button" onclick="closeModal()"
                             class="rounded-md bg-white dark:bg-gray-800 text-gray-400 hover:text-gray-500 focus:outline-none">
@@ -560,13 +560,11 @@
                             <i class="fa-solid fa-xmark text-2xl"></i>
                         </button>
                     </div>
-
                     <div class="sm:flex sm:items-start">
                         <div
                             class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
                             <i class="fa-solid fa-check text-green-600"></i>
                         </div>
-
                         <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
                             <h3 class="text-xl font-semibold leading-6 text-gray-900 dark:text-white" id="modal-title">
                                 Message Sent Successfully!
@@ -584,9 +582,138 @@
         </div>
     </div>
 
+    <div id="saved-overlay" onclick="toggleSavedPanel()"
+        class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm z-[90] hidden transition-opacity duration-300">
+    </div>
+
+    <div id="saved-drawer"
+        class="fixed top-0 right-0 z-[100] h-full w-full md:w-[400px] lg:w-[30%] bg-white dark:bg-gray-800 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out border-l border-gray-200 dark:border-gray-700">
+
+        <div class="flex items-center justify-between p-5 border-b border-gray-100 dark:border-gray-700">
+            <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+                <i class="fa-solid fa-bookmark text-primary mr-2"></i> Saved Courses
+            </h2>
+            <button onclick="toggleSavedPanel()"
+                class="text-gray-400 hover:text-gray-600 dark:hover:text-white transition">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+        </div>
+
+        <div id="saved-list" class="p-5 overflow-y-auto h-[calc(100%-80px)]">
+            <div class="flex flex-col items-center justify-center h-64 text-center">
+                <div class="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mb-4">
+                    <i class="fa-regular fa-bookmark text-2xl text-gray-400"></i>
+                </div>
+                <p class="text-gray-500 dark:text-gray-400">No courses saved yet.</p>
+            </div>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="./js/contact-form.js"></script>
     <script src="./js/animations.js"></script>
+
+    <script>
+        function toggleSavedPanel() {
+            const drawer = document.getElementById('saved-drawer');
+            const overlay = document.getElementById('saved-overlay');
+            const body = document.body;
+
+            const isClosed = drawer.classList.contains('translate-x-full');
+
+            if (isClosed) {
+                // Open
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+                body.classList.add('overflow-hidden'); // Prevent scrolling
+            } else {
+                // Close
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+                body.classList.remove('overflow-hidden');
+            }
+        }
+
+
+        // --- LOAD SAVED COURSES INTO DRAWER ---
+        function loadSavedCourses() {
+            const listContainer = document.getElementById('saved-list');
+            const savedCourses = JSON.parse(localStorage.getItem('learnify_saved')) || [];
+
+            // Clear current list (keep the empty state hidden for now)
+            listContainer.innerHTML = '';
+
+            if (savedCourses.length === 0) {
+                // Show Empty State
+                listContainer.innerHTML = `
+                <div id="empty-state" class="flex flex-col items-center justify-center h-64 text-center">
+                    <div class="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-regular fa-bookmark text-2xl text-gray-400"></i>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400">No courses saved yet.</p>
+                    <p class="text-xs text-gray-400 mt-1">Click the save button on a video to add it here.</p>
+                </div>`;
+                return;
+            }
+
+            // Generate HTML for each saved course
+            savedCourses.forEach(course => {
+                const itemHTML = `
+                <div class="flex gap-3 p-3 rounded-xl bg-gray-50 dark:bg-gray-700/50 border border-gray-100 dark:border-gray-600 hover:border-primary/50 transition cursor-pointer group relative">
+                    <a href="${course.link}" class="absolute inset-0 z-0"></a>
+                    
+                    <div class="relative w-24 h-16 flex-shrink-0 rounded-lg overflow-hidden">
+                        <img src="${course.image}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-grow z-10 pointer-events-none"> <h4 class="text-sm font-bold text-gray-900 dark:text-white line-clamp-1">${course.title}</h4>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">${course.lessons} • ${course.duration}</p>
+                    </div>
+                    <button onclick="removeCourse('${course.id}')" class="z-20 text-gray-400 hover:text-red-500 transition px-1">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `;
+                listContainer.innerHTML += itemHTML;
+            });
+        }
+
+        // --- REMOVE COURSE FUNCTION ---
+        function removeCourse(id) {
+            let savedCourses = JSON.parse(localStorage.getItem('learnify_saved')) || [];
+            // Filter out the item
+            savedCourses = savedCourses.filter(course => course.id !== id);
+            // Save back
+            localStorage.setItem('learnify_saved', JSON.stringify(savedCourses));
+            // Reload the UI
+            loadSavedCourses();
+        }
+
+        // Load courses whenever the drawer is opened
+        // (We hook into your existing toggle function)
+        const originalToggle = window.toggleSavedPanel; // Save your old function
+        window.toggleSavedPanel = function () {
+            // Run the original animation logic
+            const drawer = document.getElementById('saved-drawer');
+            const overlay = document.getElementById('saved-overlay');
+            const body = document.body;
+            const isClosed = drawer.classList.contains('translate-x-full');
+
+            if (isClosed) {
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+                body.classList.add('overflow-hidden');
+
+                // ** NEW: Load data when opening **
+                loadSavedCourses();
+            } else {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+                body.classList.remove('overflow-hidden');
+            }
+        }
+
+
+    </script>
 </body>
 
 </html>
