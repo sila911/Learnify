@@ -60,12 +60,23 @@
     <nav
         class="fixed w-full z-50 top-0 start-0 border-b border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md transition-colors duration-300">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+
+            <button data-collapse-toggle="navbar-sticky" type="button" id="mobile-menu-button"
+                class="inline-flex items-center p-2 w-10 h-10 justify-flix-start text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M1 1h15M1 7h15M1 13h15" />
+                </svg>
+            </button>
+
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
                     <i class="fa-solid fa-graduation-cap fa-lg"></i>
                 </div>
-                <span
-                    class="self-center text-2xl font-bold whitespace-nowrap text-gray-900 dark:text-white">Learnify</span>
+                <span class="self-center text-2xl font-bold whitespace-nowrap text-gray-900 dark:text-white">Learnify
+                </span>
             </a>
 
             <div class="flex items-center md:order-2 space-x-3 rtl:space-x-reverse">
@@ -93,15 +104,7 @@
                     class="text-white bg-primary hover:bg-primary/90 focus:ring-4 focus:outline-none focus:ring-primary/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all shadow-md hover:shadow-lg">
                     Get Started
                 </button>
-                <button data-collapse-toggle="navbar-sticky" type="button" id="mobile-menu-button"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 1h15M1 7h15M1 13h15" />
-                    </svg>
-                </button>
+
             </div>
 
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
@@ -210,7 +213,6 @@
                     <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Discover our highest-rated courses,
                         handpicked for you based on current industry trends.</p>
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <a href="./course-detail.html" data-aos="fade-up" data-aos-duration="1000"
                         class="group bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 overflow-hidden flex flex-col h-full">
@@ -239,6 +241,56 @@
                                 class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
                                 <span><i class="fa-regular fa-clock mr-1"></i> 8h 30m</span>
                                 <span><i class="fa-solid fa-video mr-1"></i> 18 Lessons</span>
+                            </div>
+                        </div>
+                    </a>
+
+
+                    <!-- Reactjs card -->
+                    <a href="./react-course-detail.html" data-aos="fade-up" data-aos-duration="1000"
+                        data-aos-delay="100"
+                        class="group bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 overflow-hidden flex flex-col h-full">
+
+                        <div class="relative overflow-hidden h-48">
+                            <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1000&auto=format&fit=crop"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
+                                alt="React Course">
+
+                            <div
+                                class="absolute top-4 right-4 bg-white dark:bg-gray-900 px-2 py-1 rounded-md text-xs font-bold text-gray-900 dark:text-white shadow-sm">
+                                Popular
+                            </div>
+                        </div>
+
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span
+                                    class="bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200 text-xs font-medium px-2.5 py-0.5 rounded">
+                                    Frontend
+                                </span>
+                                <div class="flex text-yellow-400 text-xs">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star-half-stroke"></i>
+                                </div>
+                                <span class="text-gray-400 text-xs">(4.8)</span>
+                            </div>
+
+                            <h3
+                                class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition">
+                                Modern React.js Masterclass
+                            </h3>
+
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+                                Build dynamic, high-performance web applications with Hooks, Context API, and Redux.
+                            </p>
+
+                            <div
+                                class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
+                                <span><i class="fa-regular fa-clock mr-1"></i> 10h 15m</span>
+                                <span><i class="fa-solid fa-video mr-1"></i> 24 Lessons</span>
                             </div>
                         </div>
                     </a>
