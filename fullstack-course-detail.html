@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERN Stack Bootcamp - Lesson 1 | Learnify</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: '#8487BF',
+                        secondary: '#F0F1F2',
+                        accent: '#70e000',
+                    }
+                }
+            }
+        }
+    </script>
+    <script>document.documentElement.classList.add('dark');</script>
+</head>
+
+<body class="font-sans antialiased bg-gray-900 text-white">
+
+    <nav class="border-b border-gray-700 bg-gray-900/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight">Learnify</span>
+                </a>
+
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="text-sm font-medium text-gray-400 hover:text-white transition">
+                        <i class="fa-solid fa-arrow-left mr-2"></i> Back
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <div class="lg:col-span-2 space-y-6">
+
+                <div
+                    class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-gray-700">
+                    <iframe id="main-video" class="absolute inset-0 w-full h-full"
+                        src="https://www.youtube.com/embed/7CqJlxBYj-M?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
+                        title="Course Video" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <h1 id="video-title" class="text-2xl md:text-3xl font-bold mb-2">1. Intro to MERN Stack</h1>
+                        <p class="text-gray-400 text-sm">
+                            <span class="mr-4"><i class="fa-regular fa-clock mr-1"></i> 25 mins</span>
+                            <span><i class="fa-solid fa-signal mr-1"></i> Advanced Level</span>
+                        </p>
+                    </div>
+                    <button id="save-course-btn" onclick="saveCurrentCourse()"
+                        class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-700 transition flex items-center gap-2">
+                        <i class="fa-regular fa-bookmark" id="save-icon"></i>
+                        <span id="save-text">Save</span>
+                    </button>
+                </div>
+
+                <div class="border-b border-gray-700">
+                    <nav class="-mb-px flex space-x-8">
+                        <a href="#"
+                            class="border-primary text-primary whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Overview</a>
+                        <a href="#"
+                            class="border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Resources
+                            (12)</a>
+                        <a href="#"
+                            class="border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Discussion</a>
+                    </nav>
+                </div>
+
+                <div class="prose prose-invert max-w-none text-gray-300">
+                    <p>Welcome to the ultimate Full Stack Web Development course. The MERN stack (MongoDB, Express,
+                        React, Node.js) allows you to build sophisticated, full-stack applications using a single
+                        language: JavaScript.</p>
+                    <h3 class="text-white font-bold mt-4">What you'll learn:</h3>
+                    <ul class="list-disc pl-5 space-y-1 mt-2">
+                        <li>Building RESTful APIs with Node & Express</li>
+                        <li>Database design with MongoDB & Mongoose</li>
+                        <li>Integrating React Frontend with Backend</li>
+                        <li>Authentication (JWT) and Deployment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lg:col-span-1">
+                <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden sticky top-24">
+
+                    <div class="p-5 border-b border-gray-700 bg-gray-800">
+                        <h3 class="font-bold text-lg mb-1">Course Content</h3>
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>48 Lessons</span>
+                            <span>22h 10m Total</span>
+                        </div>
+
+                        <div class="w-full bg-gray-700 rounded-full h-1.5 mt-3">
+                            <div class="bg-emerald-500 h-1.5 rounded-full" style="width: 2%"></div>
+                        </div>
+                    </div>
+
+                    <div class="overflow-y-auto max-h-[600px] p-2 space-y-1" id="playlist">
+
+                        <button onclick="changeVideo('7CqJlxBYj-M', '1. Intro to MERN Stack', this)"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl bg-primary/20 border border-primary/50 text-left transition group">
+                            <div
+                                class="flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-white">
+                                <i class="fa-solid fa-play text-[10px]"></i>
+                            </div>
+                            <div class="flex-grow">
+                                <p class="text-sm font-semibold text-white">1. Intro to MERN Stack</p>
+                                <span class="text-xs text-primary font-medium">25:00 • Playing</span>
+                            </div>
+                        </button>
+
+                        <button onclick="changeVideo('Oe421EPjeBE', '2. Node.js & Express Setup', this)"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
+                            <div
+                                class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
+                                2
+                            </div>
+                            <div class="flex-grow">
+                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Node.js & Express
+                                    Setup</p>
+                                <span class="text-xs text-gray-500">45:15</span>
+                            </div>
+                            <i class="fa-regular fa-circle-play text-gray-600 group-hover:text-accent"></i>
+                        </button>
+
+                        <button onclick="changeVideo('DZBGEVgL2eE', '3. MongoDB Atlas & Mongoose', this)"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
+                            <div
+                                class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
+                                3
+                            </div>
+                            <div class="flex-grow">
+                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">MongoDB Atlas &
+                                    Mongoose</p>
+                                <span class="text-xs text-gray-500">50:30</span>
+                            </div>
+                            <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
+                        </button>
+
+                        <button onclick="changeVideo('-0exw-9YJBo', '4. Building the API Routes', this)"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
+                            <div
+                                class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
+                                4
+                            </div>
+                            <div class="flex-grow">
+                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Building the API
+                                    Routes</p>
+                                <span class="text-xs text-gray-500">55:10</span>
+                            </div>
+                            <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
+                        </button>
+
+                        <button onclick="changeVideo('mvfsC66xqj0', '5. Connecting React to Backend', this)"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
+                            <div
+                                class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
+                                5
+                            </div>
+                            <div class="flex-grow">
+                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Connecting React to
+                                    Backend</p>
+                                <span class="text-xs text-gray-500">1:10:00</span>
+                            </div>
+                            <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="border-t border-gray-800 bg-gray-900 mt-12 py-8 text-center text-gray-500 text-sm">
+        &copy; 2025 Learnify Platform. All rights reserved.
+    </footer>
+
+    <script>
+        // --- SAVE COURSE LOGIC (UNIQUE FOR MERN) ---
+        function saveCurrentCourse() {
+            // 1. Define the course data
+            const courseData = {
+                id: 'mern-505', // UNIQUE ID FOR FULL STACK
+                title: 'The Complete MERN Stack Bootcamp',
+                lessons: '48 Lessons',
+                duration: '22h 10m',
+                image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=300', // Full Stack Image
+                link: 'fullstack-course-detail.html'
+            };
+
+            let savedCourses = JSON.parse(localStorage.getItem('learnify_saved')) || [];
+            const isSaved = savedCourses.some(course => course.id === courseData.id);
+
+            if (isSaved) {
+                savedCourses = savedCourses.filter(course => course.id !== courseData.id);
+                updateSaveButtonUI(false);
+                alert("Course removed from Saved list.");
+            } else {
+                savedCourses.push(courseData);
+                updateSaveButtonUI(true);
+                alert("Course saved successfully!");
+            }
+
+            localStorage.setItem('learnify_saved', JSON.stringify(savedCourses));
+        }
+
+        // Update Button Style
+        function updateSaveButtonUI(isSaved) {
+            const icon = document.getElementById('save-icon');
+            const text = document.getElementById('save-text');
+
+            if (isSaved) {
+                icon.classList.remove('fa-regular');
+                icon.classList.add('fa-solid', 'text-accent');
+                text.innerText = "Saved";
+                text.classList.add('text-accent');
+            } else {
+                icon.classList.remove('fa-solid', 'text-accent');
+                icon.classList.add('fa-regular');
+                text.innerText = "Save";
+                text.classList.remove('text-accent');
+            }
+        }
+
+        // Check status on page load (Checking specifically for MERN ID)
+        window.onload = function () {
+            let savedCourses = JSON.parse(localStorage.getItem('learnify_saved')) || [];
+            const isSaved = savedCourses.some(course => course.id === 'mern-505');
+            if (isSaved) updateSaveButtonUI(true);
+        };
+
+        // --- VIDEO SWITCHER LOGIC ---
+        function changeVideo(videoId, title, element) {
+            const iframe = document.getElementById('main-video');
+            iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1&autoplay=1`;
+
+            document.getElementById('video-title').textContent = title;
+
+            const allItems = document.querySelectorAll('.playlist-item');
+
+            allItems.forEach(item => {
+                item.className = "playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group";
+                const iconContainer = item.querySelector('div:first-child');
+                const number = Array.from(allItems).indexOf(item) + 1;
+
+                if (iconContainer.innerHTML.includes('fa-play')) {
+                    iconContainer.className = "flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white";
+                    iconContainer.innerText = number;
+                }
+            });
+
+            element.className = "playlist-item w-full flex items-center gap-3 p-3 rounded-xl bg-primary/20 border border-primary/50 text-left transition group";
+
+            const activeIconContainer = element.querySelector('div:first-child');
+            activeIconContainer.className = "flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-white";
+            activeIconContainer.innerHTML = '<i class="fa-solid fa-play text-[10px]"></i>';
+        }
+    </script>
+</body>
+
+</html>
