@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MERN Stack Bootcamp - Lesson 1 | Learnify</title>
+    <title>Data Science & Machine Learning - Lesson 1 | Learnify</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -34,7 +34,7 @@
     <nav class="border-b border-gray-700 bg-gray-900/90 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <a href="index.html" class="flex items-center gap-3">
+                <a href="../course/datascience-course-detail.html" class="flex items-center gap-3">
                     <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
                         <i class="fa-solid fa-graduation-cap"></i>
                     </div>
@@ -42,7 +42,8 @@
                 </a>
 
                 <div class="flex items-center gap-4">
-                    <a href="index.html" class="text-sm font-medium text-gray-400 hover:text-white transition">
+                    <a href="../course/datascience-course-detail.html"
+                        class="text-sm font-medium text-gray-400 hover:text-white transition">
                         <i class="fa-solid fa-arrow-left mr-2"></i> Back
                     </a>
                 </div>
@@ -58,7 +59,7 @@
                 <div
                     class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-gray-700">
                     <iframe id="main-video" class="absolute inset-0 w-full h-full"
-                        src="https://www.youtube.com/embed/7CqJlxBYj-M?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
+                        src="https://www.youtube.com/embed/ua-CiDNNj30?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
                         title="Course Video" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
@@ -67,10 +68,10 @@
 
                 <div class="flex items-start justify-between gap-4">
                     <div>
-                        <h1 id="video-title" class="text-2xl md:text-3xl font-bold mb-2">1. Intro to MERN Stack</h1>
+                        <h1 id="video-title" class="text-2xl md:text-3xl font-bold mb-2">1. What is Data Science?</h1>
                         <p class="text-gray-400 text-sm">
-                            <span class="mr-4"><i class="fa-regular fa-clock mr-1"></i> 25 mins</span>
-                            <span><i class="fa-solid fa-signal mr-1"></i> Advanced Level</span>
+                            <span class="mr-4"><i class="fa-regular fa-clock mr-1"></i> 45 mins</span>
+                            <span><i class="fa-solid fa-signal mr-1"></i> Expert Level</span>
                         </p>
                     </div>
                     <button id="save-course-btn" onclick="saveCurrentCourse()"
@@ -86,22 +87,22 @@
                             class="border-primary text-primary whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Overview</a>
                         <a href="#"
                             class="border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Resources
-                            (12)</a>
+                            (15)</a>
                         <a href="#"
                             class="border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Discussion</a>
                     </nav>
                 </div>
 
                 <div class="prose prose-invert max-w-none text-gray-300">
-                    <p>Welcome to the ultimate Full Stack Web Development course. The MERN stack (MongoDB, Express,
-                        React, Node.js) allows you to build sophisticated, full-stack applications using a single
-                        language: JavaScript.</p>
+                    <p>Data Science is the hottest career field of the 21st century. In this course, you will learn how
+                        to analyze data, visualize complex trends, and build predictive machine learning models using
+                        Python.</p>
                     <h3 class="text-white font-bold mt-4">What you'll learn:</h3>
                     <ul class="list-disc pl-5 space-y-1 mt-2">
-                        <li>Building RESTful APIs with Node & Express</li>
-                        <li>Database design with MongoDB & Mongoose</li>
-                        <li>Integrating React Frontend with Backend</li>
-                        <li>Authentication (JWT) and Deployment</li>
+                        <li>Data Analysis with Pandas & NumPy</li>
+                        <li>Data Visualization with Matplotlib & Seaborn</li>
+                        <li>Machine Learning with Scikit-Learn</li>
+                        <li>Deep Learning Basics</li>
                     </ul>
                 </div>
             </div>
@@ -112,81 +113,81 @@
                     <div class="p-5 border-b border-gray-700 bg-gray-800">
                         <h3 class="font-bold text-lg mb-1">Course Content</h3>
                         <div class="flex justify-between text-xs text-gray-400">
-                            <span>48 Lessons</span>
-                            <span>22h 10m Total</span>
+                            <span>50 Lessons</span>
+                            <span>35h 20m Total</span>
                         </div>
 
                         <div class="w-full bg-gray-700 rounded-full h-1.5 mt-3">
-                            <div class="bg-emerald-500 h-1.5 rounded-full" style="width: 2%"></div>
+                            <div class="bg-pink-500 h-1.5 rounded-full" style="width: 2%"></div>
                         </div>
                     </div>
 
                     <div class="overflow-y-auto max-h-[600px] p-2 space-y-1" id="playlist">
 
-                        <button onclick="changeVideo('7CqJlxBYj-M', '1. Intro to MERN Stack', this)"
+                        <button onclick="changeVideo('ua-CiDNNj30', '1. What is Data Science?', this)"
                             class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl bg-primary/20 border border-primary/50 text-left transition group">
                             <div
                                 class="flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-white">
                                 <i class="fa-solid fa-play text-[10px]"></i>
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-semibold text-white">1. Intro to MERN Stack</p>
-                                <span class="text-xs text-primary font-medium">25:00 • Playing</span>
+                                <p class="text-sm font-semibold text-white">1. What is Data Science?</p>
+                                <span class="text-xs text-primary font-medium">45:00 • Playing</span>
                             </div>
                         </button>
 
-                        <button onclick="changeVideo('Oe421EPjeBE', '2. Node.js & Express Setup', this)"
+                        <button onclick="changeVideo('GPVsHOlRBBI', '2. NumPy Tutorial for Beginners', this)"
                             class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
                             <div
                                 class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
                                 2
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Node.js & Express
-                                    Setup</p>
-                                <span class="text-xs text-gray-500">45:15</span>
+                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">NumPy Tutorial for
+                                    Beginners</p>
+                                <span class="text-xs text-gray-500">1:00:00</span>
                             </div>
                             <i class="fa-regular fa-circle-play text-gray-600 group-hover:text-accent"></i>
                         </button>
 
-                        <button onclick="changeVideo('DZBGEVgL2eE', '3. MongoDB Atlas & Mongoose', this)"
+                        <button onclick="changeVideo('vmEHCJofslg', '3. Pandas Data Analysis', this)"
                             class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
                             <div
                                 class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
                                 3
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">MongoDB Atlas &
-                                    Mongoose</p>
-                                <span class="text-xs text-gray-500">50:30</span>
+                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Pandas Data Analysis
+                                </p>
+                                <span class="text-xs text-gray-500">1:15:00</span>
                             </div>
                             <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
                         </button>
 
-                        <button onclick="changeVideo('-0exw-9YJBo', '4. Building the API Routes', this)"
+                        <button onclick="changeVideo('0P7QnIQDBJY', '4. Matplotlib Visualization', this)"
                             class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
                             <div
                                 class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
                                 4
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Building the API
-                                    Routes</p>
-                                <span class="text-xs text-gray-500">55:10</span>
+                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Matplotlib
+                                    Visualization</p>
+                                <span class="text-xs text-gray-500">55:00</span>
                             </div>
                             <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
                         </button>
 
-                        <button onclick="changeVideo('mvfsC66xqj0', '5. Connecting React to Backend', this)"
+                        <button onclick="changeVideo('pqNCD_5r0IU', '5. Scikit-Learn Machine Learning', this)"
                             class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
                             <div
                                 class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
                                 5
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Connecting React to
-                                    Backend</p>
-                                <span class="text-xs text-gray-500">1:10:00</span>
+                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Scikit-Learn Machine
+                                    Learning</p>
+                                <span class="text-xs text-gray-500">1:20:00</span>
                             </div>
                             <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
                         </button>
@@ -203,16 +204,16 @@
     </footer>
 
     <script>
-        // --- SAVE COURSE LOGIC (UNIQUE FOR MERN) ---
+        // --- SAVE COURSE LOGIC (UNIQUE FOR DATA SCIENCE) ---
         function saveCurrentCourse() {
             // 1. Define the course data
             const courseData = {
-                id: 'mern-505', // UNIQUE ID FOR FULL STACK
-                title: 'The Complete MERN Stack Bootcamp',
-                lessons: '48 Lessons',
-                duration: '22h 10m',
-                image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=300', // Full Stack Image
-                link: 'fullstack-course-detail.html'
+                id: 'ds-606', // UNIQUE ID FOR DATA SCIENCE
+                title: 'Data Science & Machine Learning',
+                lessons: '50 Lessons',
+                duration: '35h 20m',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=300', // DS Image
+                link: 'datascience-course-detail.html'
             };
 
             let savedCourses = JSON.parse(localStorage.getItem('learnify_saved')) || [];
@@ -249,10 +250,10 @@
             }
         }
 
-        // Check status on page load (Checking specifically for MERN ID)
+        // Check status on page load (Checking specifically for DS ID)
         window.onload = function () {
             let savedCourses = JSON.parse(localStorage.getItem('learnify_saved')) || [];
-            const isSaved = savedCourses.some(course => course.id === 'mern-505');
+            const isSaved = savedCourses.some(course => course.id === 'ds-606');
             if (isSaved) updateSaveButtonUI(true);
         };
 
