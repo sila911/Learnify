@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python for Beginners - Lesson 1 | Learnify</title>
+    <title>Flutter & Dart: The Complete Guide - Lesson 1 | Learnify</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -58,7 +58,7 @@
                 <div
                     class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-gray-700">
                     <iframe id="main-video" class="absolute inset-0 w-full h-full"
-                        src="https://www.youtube.com/embed/_uQrJ0TkZlc?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
+                        src="https://www.youtube.com/embed/x0uinJvhNxI?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
                         title="Course Video" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
@@ -67,9 +67,9 @@
 
                 <div class="flex items-start justify-between gap-4">
                     <div>
-                        <h1 id="video-title" class="text-2xl md:text-3xl font-bold mb-2">1. Introduction to Python</h1>
+                        <h1 id="video-title" class="text-2xl md:text-3xl font-bold mb-2">1. Flutter Crash Course</h1>
                         <p class="text-gray-400 text-sm">
-                            <span class="mr-4"><i class="fa-regular fa-clock mr-1"></i> 12 mins</span>
+                            <span class="mr-4"><i class="fa-regular fa-clock mr-1"></i> 1h 10m</span>
                             <span><i class="fa-solid fa-signal mr-1"></i> Beginner Level</span>
                         </p>
                     </div>
@@ -86,21 +86,22 @@
                             class="border-primary text-primary whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Overview</a>
                         <a href="#"
                             class="border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Resources
-                            (3)</a>
+                            (6)</a>
                         <a href="#"
                             class="border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Discussion</a>
                     </nav>
                 </div>
 
                 <div class="prose prose-invert max-w-none text-gray-300">
-                    <p>In this lesson, we will cover the basics of Python syntax, variables, and data types. By the end
-                        of this video, you will have written your very first "Hello World" program and understood how
-                        Python handles memory management.</p>
+                    <p>Flutter by Google allows you to build beautiful, natively compiled applications for mobile, web,
+                        and desktop from a single codebase. In this course, we start with the Dart language basics and
+                        move to building complex UI layouts.</p>
                     <h3 class="text-white font-bold mt-4">What you'll learn:</h3>
                     <ul class="list-disc pl-5 space-y-1 mt-2">
-                        <li>Installing Python 3.12</li>
-                        <li>Setting up VS Code</li>
-                        <li>Understanding Strings and Integers</li>
+                        <li>Dart Programming Fundamentals</li>
+                        <li>Building User Interfaces with Widgets</li>
+                        <li>State Management (Provider/Riverpod)</li>
+                        <li>Publishing to App Store & Google Play</li>
                     </ul>
                 </div>
             </div>
@@ -111,79 +112,81 @@
                     <div class="p-5 border-b border-gray-700 bg-gray-800">
                         <h3 class="font-bold text-lg mb-1">Course Content</h3>
                         <div class="flex justify-between text-xs text-gray-400">
-                            <span>15 Lessons</span>
-                            <span>9h 14m Total</span>
+                            <span>42 Lessons</span>
+                            <span>28h 15m Total</span>
                         </div>
 
                         <div class="w-full bg-gray-700 rounded-full h-1.5 mt-3">
-                            <div class="bg-accent h-1.5 rounded-full" style="width: 15%"></div>
+                            <div class="bg-sky-500 h-1.5 rounded-full" style="width: 2%"></div>
                         </div>
                     </div>
 
                     <div class="overflow-y-auto max-h-[600px] p-2 space-y-1" id="playlist">
 
-                        <button onclick="changeVideo('_uQrJ0TkZlc', '1. Introduction to Python', this)"
+                        <button onclick="changeVideo('x0uinJvhNxI', '1. Flutter Crash Course', this)"
                             class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl bg-primary/20 border border-primary/50 text-left transition group">
                             <div
                                 class="flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-white">
                                 <i class="fa-solid fa-play text-[10px]"></i>
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-semibold text-white">1. Introduction to Python</p>
-                                <span class="text-xs text-primary font-medium">12:30 • Playing</span>
+                                <p class="text-sm font-semibold text-white">1. Flutter Crash Course</p>
+                                <span class="text-xs text-primary font-medium">1:10:00 • Playing</span>
                             </div>
                         </button>
 
-                        <button onclick="changeVideo('rfscVS0vtbw', '2. Variables & Data Types', this)"
+                        <button onclick="changeVideo('Ej_Pcr4uC2Q', '2. Dart Programming Basics', this)"
                             class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
                             <div
                                 class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
                                 2
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Variables & Data
-                                    Types</p>
-                                <span class="text-xs text-gray-500">15:45</span>
+                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Dart Programming
+                                    Basics</p>
+                                <span class="text-xs text-gray-500">2:00:00</span>
                             </div>
                             <i class="fa-regular fa-circle-play text-gray-600 group-hover:text-accent"></i>
                         </button>
 
-                        <button onclick="changeVideo('N4mEzFDjqtA', '3. Lists and Tuples', this)"
+                        <button onclick="changeVideo('VPvVD8t02U8', '3. Flutter for Beginners', this)"
                             class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
                             <div
                                 class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
                                 3
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Lists and Tuples</p>
-                                <span class="text-xs text-gray-500">18:20</span>
+                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Flutter for
+                                    Beginners</p>
+                                <span class="text-xs text-gray-500">37:00</span>
                             </div>
                             <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
                         </button>
 
-                        <button onclick="changeVideo('kqtD5dpn9C8', '4. Python Functions', this)"
+                        <button onclick="changeVideo('Z63V7d3edLI', '4. Building UI with Widgets', this)"
                             class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
                             <div
                                 class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
                                 4
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Python Functions</p>
-                                <span class="text-xs text-gray-500">22:10</span>
+                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Building UI with
+                                    Widgets</p>
+                                <span class="text-xs text-gray-500">45:30</span>
                             </div>
                             <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
                         </button>
 
-                        <button onclick="changeVideo('t8pPdKYpowI', '5. Object Oriented Programming', this)"
+                        <button onclick="changeVideo('1xipg02Wu8s', '5. API Calls in Flutter', this)"
                             class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
                             <div
                                 class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
                                 5
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Object Oriented
-                                    Programming</p>
-                                <span class="text-xs text-gray-500">45:00</span>
+                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">API Calls in Flutter
+                                </p>
+                                <span class="text-xs text-gray-500">50:00</span>
                             </div>
                             <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
                         </button>
@@ -200,50 +203,42 @@
     </footer>
 
     <script>
-
-
-        // --- SAVE COURSE LOGIC ---
+        // --- SAVE COURSE LOGIC (UNIQUE FOR FLUTTER) ---
         function saveCurrentCourse() {
-            // 1. Define the course data (You can make this dynamic later)
+            // 1. Define the course data
             const courseData = {
-                id: 'python-101', // Unique ID
-                title: 'Introduction to Python',
-                lessons: '15 Lessons',
-                duration: '9h 14m',
-                image: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=300',
-                link: 'course-detail.html'
+                id: 'flutter-707', // UNIQUE ID FOR FLUTTER
+                title: 'Flutter & Dart: The Complete Guide',
+                lessons: '42 Lessons',
+                duration: '28h 15m',
+                image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=300', // Flutter Image
+                link: 'flutter-course-detail.html'
             };
 
-            // 2. Get existing saved courses from LocalStorage
             let savedCourses = JSON.parse(localStorage.getItem('learnify_saved')) || [];
-
-            // 3. Check if already saved
             const isSaved = savedCourses.some(course => course.id === courseData.id);
 
             if (isSaved) {
-                // OPTIONAL: If already saved, remove it (Toggle off)
                 savedCourses = savedCourses.filter(course => course.id !== courseData.id);
                 updateSaveButtonUI(false);
                 alert("Course removed from Saved list.");
             } else {
-                // Add new course
                 savedCourses.push(courseData);
                 updateSaveButtonUI(true);
-                alert("Course saved successfully! Check your list on the Home page.");
+                alert("Course saved successfully!");
             }
 
-            // 4. Save back to LocalStorage
             localStorage.setItem('learnify_saved', JSON.stringify(savedCourses));
         }
 
-        // Update Button Style (Solid icon if saved)
+        // Update Button Style
         function updateSaveButtonUI(isSaved) {
             const icon = document.getElementById('save-icon');
             const text = document.getElementById('save-text');
 
             if (isSaved) {
                 icon.classList.remove('fa-regular');
-                icon.classList.add('fa-solid', 'text-accent'); // Solid Icon
+                icon.classList.add('fa-solid', 'text-accent');
                 text.innerText = "Saved";
                 text.classList.add('text-accent');
             } else {
@@ -254,44 +249,35 @@
             }
         }
 
-        // Check status on page load
+        // Check status on page load (Checking specifically for Flutter ID)
         window.onload = function () {
             let savedCourses = JSON.parse(localStorage.getItem('learnify_saved')) || [];
-            const isSaved = savedCourses.some(course => course.id === 'python-101');
+            const isSaved = savedCourses.some(course => course.id === 'flutter-707');
             if (isSaved) updateSaveButtonUI(true);
         };
 
+        // --- VIDEO SWITCHER LOGIC ---
         function changeVideo(videoId, title, element) {
-            // 1. Change Video Source
-            // 'rel=0' hides related videos from other channels
-            // 'modestbranding=1' minimizes YouTube logo
             const iframe = document.getElementById('main-video');
             iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1&autoplay=1`;
 
-            // 2. Change Title
             document.getElementById('video-title').textContent = title;
 
-            // 3. Update Active Style in List
             const allItems = document.querySelectorAll('.playlist-item');
 
-            // Reset all styles
             allItems.forEach(item => {
                 item.className = "playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group";
-                // Reset Icon
                 const iconContainer = item.querySelector('div:first-child');
-                const number = Array.from(allItems).indexOf(item) + 1; // Get index number
+                const number = Array.from(allItems).indexOf(item) + 1;
 
-                // If it was the play icon, revert to number
                 if (iconContainer.innerHTML.includes('fa-play')) {
                     iconContainer.className = "flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white";
                     iconContainer.innerText = number;
                 }
             });
 
-            // Set Active Style
             element.className = "playlist-item w-full flex items-center gap-3 p-3 rounded-xl bg-primary/20 border border-primary/50 text-left transition group";
 
-            // Change Number to Play Icon
             const activeIconContainer = element.querySelector('div:first-child');
             activeIconContainer.className = "flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-white";
             activeIconContainer.innerHTML = '<i class="fa-solid fa-play text-[10px]"></i>';
