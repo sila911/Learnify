@@ -221,11 +221,11 @@
             if (isSaved) {
                 savedCourses = savedCourses.filter(course => course.id !== courseData.id);
                 updateSaveButtonUI(false);
-                alert("Course removed from Saved list.");
+                //alert("Course removed from Saved list.");
             } else {
                 savedCourses.push(courseData);
                 updateSaveButtonUI(true);
-                alert("Course saved successfully!");
+                //alert("Course saved successfully!");
             }
 
             localStorage.setItem('learnify_saved', JSON.stringify(savedCourses));

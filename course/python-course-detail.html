@@ -224,12 +224,12 @@
                 // OPTIONAL: If already saved, remove it (Toggle off)
                 savedCourses = savedCourses.filter(course => course.id !== courseData.id);
                 updateSaveButtonUI(false);
-                alert("Course removed from Saved list.");
+                //alert("Course removed from Saved list.");
             } else {
                 // Add new course
                 savedCourses.push(courseData);
                 updateSaveButtonUI(true);
-                alert("Course saved successfully! Check your list on the Home page.");
+                //alert("Course saved successfully! Check your list on the Home page.");
             }
 
             // 4. Save back to LocalStorage
