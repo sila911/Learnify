@@ -27,6 +27,28 @@
         }
     </script>
     <script>document.documentElement.classList.add('dark');</script>
+    <style>
+        /* Custom Animation for Shake Effect on Error */
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        .shake-animation {
+            animation: shake 0.3s ease-in-out;
+        }
+    </style>
 </head>
 
 <body class="font-sans antialiased bg-gray-900 text-white">
@@ -58,11 +80,25 @@
                 <div id="video-container"
                     class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-gray-700">
                     <iframe id="main-video" class="absolute inset-0 w-full h-full"
-                        src="https://www.youtube.com/embed/RGOj5yH7evk?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
+                        src="https://www.youtube.com/embed/RGOj5yH7evk?enablejsapi=1&rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
                         title="Course Video" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
                     </iframe>
+                </div>
+
+                <div id="lock-alert" class="hidden transform transition-all duration-300 ease-in-out">
+                    <div
+                        class="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-xl flex items-center gap-3 shadow-lg">
+                        <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-sm">Locked Content</p>
+                            <p id="lock-msg" class="text-sm opacity-90">You must finish watching the current video
+                                first.</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="flex items-start justify-between gap-4">
@@ -70,7 +106,8 @@
                         <h1 id="video-title" class="text-2xl md:text-3xl font-bold mb-2">1. What is Version Control?
                         </h1>
                         <p class="text-gray-400 text-sm">
-                            <span class="mr-4"><i class="fa-regular fa-clock mr-1"></i> 1 hour 06 mins</span>
+                            <span class="mr-4"><i class="fa-regular fa-clock mr-1"></i> <span
+                                    id="video-duration">35:00</span></span>
                             <span><i class="fa-solid fa-signal mr-1"></i> Beginner Level</span>
                         </p>
                     </div>
@@ -88,47 +125,39 @@
                         <a href="#"
                             class="border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Resources
                             (2)</a>
-                        <a href="#"
-                            class="border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Discussion</a>
                     </nav>
                 </div>
 
                 <div class="prose prose-invert max-w-none text-gray-300">
-                    <p>Git is the essential tool for modern software development. In this course, you will learn how to
-                        track changes in your code, collaborate with other developers using GitHub, and manage different
-                        versions of your project effortlessly.</p>
-                    <h3 class="text-white font-bold mt-4">What you'll learn:</h3>
-                    <ul class="list-disc pl-5 space-y-1 mt-2">
-                        <li>Installing and Configuring Git</li>
-                        <li>Committing changes and History</li>
-                        <li>Branching and Merging strategies</li>
-                        <li>Pull Requests and Open Source Contribution</li>
-                    </ul>
+                    <p>Git is the essential tool for modern software development. Watch the videos in order to unlock
+                        the next steps.</p>
                 </div>
             </div>
 
             <div class="lg:col-span-1">
-                <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden sticky top-24">
+                <div id="course-content-box"
+                    class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden sticky top-24 transition-colors duration-300">
 
                     <div class="p-5 border-b border-gray-700 bg-gray-800">
                         <h3 class="font-bold text-lg mb-1">Course Content</h3>
                         <div class="flex justify-between text-xs text-gray-400">
                             <span>12 Lessons</span>
-                            <span>6h 30m Total</span>
+                            <span>Strict Progression</span>
                         </div>
 
                         <div class="w-full bg-gray-700 rounded-full h-1.5 mt-3">
-                            <div id="progress-bar" class="bg-orange-500 h-1.5 rounded-full transition-all duration-500"
+                            <div id="progress-bar" class="bg-red-500 h-1.5 rounded-full transition-all duration-500"
                                 style="width: 8%"></div>
                         </div>
                     </div>
 
                     <div class="overflow-y-auto max-h-[600px] p-2 space-y-1" id="playlist">
 
-                        <button onclick="changeVideo('RGOj5yH7evk', '1. What is Version Control?', this)"
+                        <button id="btn-0"
+                            onclick="attemptPlay(0, 'RGOj5yH7evk', '1. What is Version Control?', '35:00')"
                             class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl bg-primary/20 border border-primary/50 text-left transition group">
                             <div
-                                class="flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-white">
+                                class="icon-box flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-white">
                                 <i class="fa-solid fa-play text-[10px]"></i>
                             </div>
                             <div class="flex-grow">
@@ -137,59 +166,53 @@
                             </div>
                         </button>
 
-                        <button onclick="changeVideo('USjZcfj8yxE', '2. Installing Git & Config', this)"
-                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
+                        <button id="btn-1"
+                            onclick="attemptPlay(1, 'USjZcfj8yxE', '2. Installing Git & Config', '10:15')"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group opacity-50 cursor-not-allowed">
                             <div
-                                class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
-                                2
+                                class="icon-box flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400">
+                                <i class="fa-solid fa-lock text-[10px]"></i>
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Installing Git &
-                                    Config</p>
+                                <p class="text-sm font-medium text-gray-300">Installing Git & Config</p>
                                 <span class="text-xs text-gray-500">10:15</span>
                             </div>
-                            <i class="fa-regular fa-circle-play text-gray-600 group-hover:text-accent"></i>
                         </button>
 
-                        <button onclick="changeVideo('HVsySz-h9r4', '3. Staging and Committing', this)"
-                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
+                        <button id="btn-2" onclick="attemptPlay(2, 'HVsySz-h9r4', '3. Staging and Committing', '22:45')"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group opacity-50 cursor-not-allowed">
                             <div
-                                class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
-                                3
+                                class="icon-box flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400">
+                                <i class="fa-solid fa-lock text-[10px]"></i>
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Staging and
-                                    Committing</p>
+                                <p class="text-sm font-medium text-gray-300">Staging and Committing</p>
                                 <span class="text-xs text-gray-500">22:45</span>
                             </div>
-                            <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
                         </button>
 
-                        <button onclick="changeVideo('FyAAIHHClqI', '4. Branches and Merging', this)"
-                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
+                        <button id="btn-3" onclick="attemptPlay(3, 'FyAAIHHClqI', '4. Branches and Merging', '28:10')"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group opacity-50 cursor-not-allowed">
                             <div
-                                class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
-                                4
+                                class="icon-box flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400">
+                                <i class="fa-solid fa-lock text-[10px]"></i>
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Branches and Merging
-                                </p>
+                                <p class="text-sm font-medium text-gray-300">Branches and Merging</p>
                                 <span class="text-xs text-gray-500">28:10</span>
                             </div>
-                            <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
                         </button>
 
-                        <button onclick="changeVideo('3RjQznt-8kE', '5. GitHub & Remotes', this)"
-                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
+                        <button id="btn-4" onclick="attemptPlay(4, '3RjQznt-8kE', '5. GitHub & Remotes', '40:00')"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group opacity-50 cursor-not-allowed">
                             <div
-                                class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
-                                5
+                                class="icon-box flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400">
+                                <i class="fa-solid fa-lock text-[10px]"></i>
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">GitHub & Remotes</p>
+                                <p class="text-sm font-medium text-gray-300">GitHub & Remotes</p>
                                 <span class="text-xs text-gray-500">40:00</span>
                             </div>
-                            <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
                         </button>
 
                     </div>
@@ -199,41 +222,176 @@
         </div>
     </main>
 
-    <footer class="border-t border-gray-800 bg-gray-900 mt-12 py-8 text-center text-gray-500 text-sm">
-        &copy; 2025 Learnify Platform. All rights reserved.
-    </footer>
+    <script src="https://www.youtube.com/iframe_api"></script>
 
     <script>
-        // --- SAVE COURSE LOGIC (UNIQUE FOR GIT) ---
-        function saveCurrentCourse() {
-            const courseData = {
-                id: 'git-404',
-                title: 'Git & GitHub Version Control',
-                lessons: '12 Lessons',
-                duration: '6h 30m',
-                image: 'https://i.pinimg.com/736x/ae/45/78/ae457871a5bef568338e8c73043afcf2.jpg',
-                link: 'git-course-detail.html'
-            };
+        // --- 1. STATE MANAGEMENT ---
+        let player;
+        let currentPlayingIndex = 0;
+        let maxUnlockedIndex = 0;
+        const totalLessons = 5;
+        let errorTimeout; // To handle clearing the error message
 
-            let savedCourses = JSON.parse(localStorage.getItem('learnify_saved')) || [];
-            const isSaved = savedCourses.some(course => course.id === courseData.id);
-
-            if (isSaved) {
-                savedCourses = savedCourses.filter(course => course.id !== courseData.id);
-                updateSaveButtonUI(false);
-            } else {
-                savedCourses.push(courseData);
-                updateSaveButtonUI(true);
-            }
-
-            localStorage.setItem('learnify_saved', JSON.stringify(savedCourses));
+        // --- 2. YOUTUBE API SETUP ---
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('main-video', {
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
         }
 
-        function updateSaveButtonUI(isSaved) {
+        // --- 3. VIDEO END DETECTOR (Unlock Logic) ---
+        function onPlayerStateChange(event) {
+            // YT.PlayerState.ENDED is 0
+            if (event.data === 0) {
+                unlockNextLesson();
+            }
+        }
+
+        function unlockNextLesson() {
+            if (currentPlayingIndex === maxUnlockedIndex) {
+                if (maxUnlockedIndex < totalLessons - 1) {
+                    maxUnlockedIndex++;
+                    updatePlaylistUI();
+                }
+            }
+        }
+
+        // --- 4. CLICK HANDLER (The Gatekeeper) ---
+        function attemptPlay(index, videoId, title, duration) {
+
+            // SECURITY CHECK: Is this index allowed?
+            if (index > maxUnlockedIndex) {
+                // FAIL: Video is locked
+                showLockedError(index);
+                return;
+            }
+
+            // SUCCESS: Play the video
+            // Hide error if it was showing
+            document.getElementById('lock-alert').classList.add('hidden');
+
+            currentPlayingIndex = index;
+
+            if (player && player.loadVideoById) {
+                player.loadVideoById(videoId);
+            } else {
+                document.getElementById('main-video').src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=1`;
+            }
+
+            document.getElementById('video-title').textContent = title;
+            document.getElementById('video-duration').textContent = duration;
+
+            document.getElementById('video-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            updatePlaylistUI();
+        }
+
+        // --- 5. NEW ERROR FEEDBACK (Red Button + Text) ---
+        function showLockedError(clickedIndex) {
+            // A. Get the Title of the video they NEED to finish (The current one)
+            // We find the button corresponding to the maxUnlockedIndex to get its title
+            const currentButton = document.getElementById(`btn-${maxUnlockedIndex}`);
+            const currentTitle = currentButton.querySelector('.flex-grow p').innerText;
+
+            // B. Update Warning Text
+            const alertBox = document.getElementById('lock-alert');
+            const alertMsg = document.getElementById('lock-msg');
+
+            alertMsg.innerHTML = `You must finish watching <span class="font-bold text-white">"${currentTitle}"</span> to unlock this lesson.`;
+            alertBox.classList.remove('hidden');
+
+            // C. Shake & Red Border on the CLICKED Button (Not the whole box)
+            const clickedBtn = document.getElementById(`btn-${clickedIndex}`);
+            clickedBtn.classList.add('border-red-500', 'bg-red-500/10', 'shake-animation');
+            clickedBtn.classList.remove('border-transparent');
+
+            // D. Remove Styles after 3 Seconds
+            if (errorTimeout) clearTimeout(errorTimeout);
+
+            errorTimeout = setTimeout(() => {
+                alertBox.classList.add('hidden');
+                clickedBtn.classList.remove('border-red-500', 'bg-red-500/10', 'shake-animation');
+                clickedBtn.classList.add('border-transparent');
+            }, 3000);
+        }
+
+        // --- 6. UI UPDATER ---
+        function updatePlaylistUI() {
+            for (let i = 0; i < totalLessons; i++) {
+                const btn = document.getElementById(`btn-${i}`);
+                const iconBox = btn.querySelector('.icon-box');
+                const titleText = btn.querySelector('.flex-grow p');
+                const durText = btn.querySelector('.flex-grow span');
+
+                // CLEAN SLATE
+                btn.className = "playlist-item w-full flex items-center gap-3 p-3 rounded-xl border border-transparent text-left transition group";
+                // Reset basic icon styles
+                iconBox.className = "icon-box flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs";
+
+                durText.innerText = durText.innerText.replace(' • Playing', '');
+
+                // LOGIC: CURRENT PLAYING
+                if (i === currentPlayingIndex) {
+                    btn.classList.add('bg-primary/20', 'border-primary/50');
+                    btn.classList.remove('border-transparent');
+
+                    iconBox.classList.add('bg-primary', 'text-white', 'font-bold');
+                    iconBox.innerHTML = '<i class="fa-solid fa-play text-[10px]"></i>';
+
+                    titleText.className = "text-sm font-semibold text-white";
+                    durText.className = "text-xs text-primary font-medium";
+                    durText.innerText += ' • Playing';
+                }
+                // LOGIC: UNLOCKED BUT NOT PLAYING
+                else if (i <= maxUnlockedIndex) {
+                    btn.classList.add('hover:bg-gray-700/50', 'hover:border-gray-600');
+
+                    iconBox.classList.add('border', 'border-gray-500', 'text-gray-400', 'group-hover:border-white', 'group-hover:text-white');
+
+                    if (i < maxUnlockedIndex) {
+                        iconBox.innerHTML = '<i class="fa-solid fa-check text-[10px]"></i>';
+                        iconBox.classList.remove('border-gray-500', 'text-gray-400');
+                        iconBox.classList.add('text-green-500', 'border-green-500');
+                    } else {
+                        iconBox.innerText = i + 1;
+                    }
+
+                    titleText.className = "text-sm font-medium text-gray-300 group-hover:text-white";
+                    durText.className = "text-xs text-gray-500";
+                }
+                // LOGIC: LOCKED
+                else {
+                    btn.classList.add('opacity-50', 'cursor-not-allowed');
+
+                    iconBox.classList.add('border', 'border-gray-500', 'text-gray-400');
+                    iconBox.innerHTML = '<i class="fa-solid fa-lock text-[10px]"></i>';
+
+                    titleText.className = "text-sm font-medium text-gray-500";
+                    durText.className = "text-xs text-gray-600";
+                }
+            }
+            updateProgressBar();
+        }
+
+        function updateProgressBar() {
+            const progressBar = document.getElementById('progress-bar');
+            const percent = ((currentPlayingIndex + 1) / totalLessons) * 100;
+            progressBar.style.width = `${percent}%`;
+
+            progressBar.classList.remove('bg-red-500', 'bg-orange-500', 'bg-yellow-400', 'bg-green-500');
+
+            if (percent <= 25) progressBar.classList.add('bg-red-500');
+            else if (percent <= 50) progressBar.classList.add('bg-orange-500');
+            else if (percent <= 75) progressBar.classList.add('bg-yellow-400');
+            else progressBar.classList.add('bg-green-500');
+        }
+
+        function saveCurrentCourse() {
             const icon = document.getElementById('save-icon');
             const text = document.getElementById('save-text');
-
-            if (isSaved) {
+            if (text.innerText === "Save") {
                 icon.classList.remove('fa-regular');
                 icon.classList.add('fa-solid', 'text-accent');
                 text.innerText = "Saved";
@@ -247,72 +405,7 @@
         }
 
         window.onload = function () {
-            let savedCourses = JSON.parse(localStorage.getItem('learnify_saved')) || [];
-            const isSaved = savedCourses.some(course => course.id === 'git-404');
-            if (isSaved) updateSaveButtonUI(true);
-        };
-
-        // --- UPDATED VIDEO SWITCHER LOGIC ---
-        function changeVideo(videoId, title, element) {
-            // 1. Change Video Source
-            const iframe = document.getElementById('main-video');
-            iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1&autoplay=1`;
-
-            // 2. Change Title
-            document.getElementById('video-title').textContent = title;
-
-            // 3. SCROLL TO TOP (Scrolls the video container into view)
-            document.getElementById('video-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            // 4. RESET ALL PLAYLIST ITEMS (Styles, Icons, Text)
-            const allItems = document.querySelectorAll('.playlist-item');
-
-            allItems.forEach((item, index) => {
-                // Reset styles to default
-                item.className = "playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group";
-
-                // Reset Icon to Number
-                const iconContainer = item.querySelector('div:first-child');
-                iconContainer.className = "flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white";
-                iconContainer.innerText = index + 1;
-
-                // Reset Text Styles and Remove "Playing"
-                const textContainer = item.querySelector('.flex-grow');
-                const titleEl = textContainer.querySelector('p');
-                const durationEl = textContainer.querySelector('span');
-
-                titleEl.className = "text-sm font-medium text-gray-300 group-hover:text-white";
-                durationEl.className = "text-xs text-gray-500";
-                durationEl.innerText = durationEl.innerText.replace(' • Playing', ''); // Strip "Playing" text
-            });
-
-            // 5. UPDATE CLICKED ITEM (Styles, Icon, Text)
-            // Active Container Style
-            element.className = "playlist-item w-full flex items-center gap-3 p-3 rounded-xl bg-primary/20 border border-primary/50 text-left transition group";
-
-            // Set Play Icon
-            const activeIconContainer = element.querySelector('div:first-child');
-            activeIconContainer.className = "flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-white";
-            activeIconContainer.innerHTML = '<i class="fa-solid fa-play text-[10px]"></i>';
-
-            // Set Active Text Style & Add "Playing"
-            const activeTextContainer = element.querySelector('.flex-grow');
-            const activeTitle = activeTextContainer.querySelector('p');
-            const activeDuration = activeTextContainer.querySelector('span');
-
-            activeTitle.className = "text-sm font-semibold text-white"; // White title
-            activeDuration.className = "text-xs text-primary font-medium"; // Purple time
-            if (!activeDuration.innerText.includes('Playing')) {
-                activeDuration.innerText += ' • Playing';
-            }
-
-            // 6. UPDATE PROGRESS BAR (Counting Logic)
-            // Calculate percentage based on current index vs total items
-            const index = Array.from(allItems).indexOf(element);
-            const total = allItems.length;
-            const progressPercent = ((index + 1) / total) * 100;
-
-            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+            updatePlaylistUI();
         }
     </script>
 </body>
