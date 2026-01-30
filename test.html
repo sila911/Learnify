@@ -1,159 +1,320 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git & GitHub Version Control - Lesson 1 | Learnify</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>Learnify Navbar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: '#8487BF',
+                        secondary: '#F0F1F2',
+                        accent: '#70e000',
+                    }
+                }
+            }
+        }
+    </script>
+    <script>document.documentElement.classList.add('dark');</script>
 </head>
 
-<body class="bg-gray-100 dark:bg-gray-900 h-[200vh]">
+<body class="font-sans antialiased bg-gray-900 text-white">
 
-    <nav
-        class="fixed w-full z-50 top-0 start-0 border-b border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md transition-colors duration-300">
-
-        <div class="max-w-screen-xl mx-auto p-4 grid grid-cols-2 md:grid-cols-3 items-center">
-
-            <div class="flex items-center justify-start gap-3">
-
-                <button id="mobile-menu-btn" type="button"
-                    class="inline-flex items-center p-2 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-
-                <a href="#" class="flex items-center space-x-2">
-                    <div
-                        class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white bg-blue-600">
-                        <i class="fa-solid fa-graduation-cap fa-lg"></i>
+    <nav class="border-b border-gray-700 bg-gray-900/90 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html" class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                        <i class="fa-solid fa-graduation-cap"></i>
                     </div>
-                    <span
-                        class="self-center text-2xl font-bold whitespace-nowrap text-gray-900 dark:text-white">Learnify</span>
+                    <span class="font-bold text-xl tracking-tight">Learnify</span>
                 </a>
+
+                <div class="flex items-center gap-4">
+                    <a href="../index.html" class="text-sm font-medium text-gray-400 hover:text-white transition">
+                        <i class="fa-solid fa-arrow-left mr-2"></i> Back
+                    </a>
+                </div>
             </div>
-
-            <div class="hidden md:flex justify-center">
-                <ul class="flex flex-row space-x-8 font-medium">
-                    <li><a href="#" class="block py-2 px-3 text-blue-600" aria-current="page">Home</a></li>
-                    <li><a href="#courses"
-                            class="block py-2 px-3 text-gray-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-500 transition">Courses</a>
-                    </li>
-                    <li><a href="#about"
-                            class="block py-2 px-3 text-gray-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-500 transition">About</a>
-                    </li>
-                    <li><a href="#pricing"
-                            class="block py-2 px-3 text-gray-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-500 transition">Pricing</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="flex items-center justify-end space-x-2">
-                <button id="theme-toggle" type="button"
-                    class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2.5">
-                    <i class="fa-solid fa-moon"></i> </button>
-
-                <button onclick="toggleSavedPanel()"
-                    class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-700 transition hidden sm:inline-block">
-                    <i class="fa-regular fa-bookmark"></i> Save
-                </button>
-
-                <button type="button"
-                    class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all shadow-md">
-                    Get Started
-                </button>
-            </div>
-
         </div>
     </nav>
 
-    <div id="sidebar-overlay" class="fixed inset-0 z-40 bg-black/50 hidden backdrop-blur-sm transition-opacity"></div>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-    <aside id="mobile-sidebar"
-        class="fixed top-0 left-0 z-50 h-screen w-64 transition-transform -translate-x-full bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 shadow-xl">
+            <div class="lg:col-span-2 space-y-6">
 
-        <div class="flex items-center justify-between p-4 border-b dark:border-gray-700">
-            <span class="text-xl font-bold text-gray-900 dark:text-white">Menu</span>
-            <button id="close-sidebar-btn"
-                class="text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-lg">
-                <i class="fa-solid fa-xmark fa-lg"></i>
-            </button>
-        </div>
+                <div id="video-container"
+                    class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-gray-700">
+                    <iframe id="main-video" class="absolute inset-0 w-full h-full"
+                        src="https://www.youtube.com/embed/RGOj5yH7evk?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
+                        title="Course Video" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
 
-        <div class="p-4 overflow-y-auto">
-            <ul class="space-y-2 font-medium">
-                <li>
-                    <a href="#"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i
-                            class="fa-solid fa-house w-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                        <span class="ms-3">Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#courses"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i
-                            class="fa-solid fa-book w-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                        <span class="ms-3">Courses</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#about"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i
-                            class="fa-solid fa-circle-info w-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                        <span class="ms-3">About</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#pricing"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i
-                            class="fa-solid fa-tag w-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                        <span class="ms-3">Pricing</span>
-                    </a>
-                </li>
-
-                <li class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                    <button onclick="toggleSavedPanel()"
-                        class="w-full flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <i class="fa-regular fa-bookmark w-6"></i>
-                        <span class="ms-3">Saved Items</span>
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <h1 id="video-title" class="text-2xl md:text-3xl font-bold mb-2">1. What is Version Control?
+                        </h1>
+                        <p class="text-gray-400 text-sm">
+                            <span class="mr-4"><i class="fa-regular fa-clock mr-1"></i> 1 hour 06 mins</span>
+                            <span><i class="fa-solid fa-signal mr-1"></i> Beginner Level</span>
+                        </p>
+                    </div>
+                    <button id="save-course-btn" onclick="saveCurrentCourse()"
+                        class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-700 transition flex items-center gap-2">
+                        <i class="fa-regular fa-bookmark" id="save-icon"></i>
+                        <span id="save-text">Save</span>
                     </button>
-                </li>
-            </ul>
+                </div>
+
+                <div class="border-b border-gray-700">
+                    <nav class="-mb-px flex space-x-8">
+                        <a href="#"
+                            class="border-primary text-primary whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Overview</a>
+                        <a href="#"
+                            class="border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Resources
+                            (2)</a>
+                        <a href="#"
+                            class="border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Discussion</a>
+                    </nav>
+                </div>
+
+                <div class="prose prose-invert max-w-none text-gray-300">
+                    <p>Git is the essential tool for modern software development. In this course, you will learn how to
+                        track changes in your code, collaborate with other developers using GitHub, and manage different
+                        versions of your project effortlessly.</p>
+                    <h3 class="text-white font-bold mt-4">What you'll learn:</h3>
+                    <ul class="list-disc pl-5 space-y-1 mt-2">
+                        <li>Installing and Configuring Git</li>
+                        <li>Committing changes and History</li>
+                        <li>Branching and Merging strategies</li>
+                        <li>Pull Requests and Open Source Contribution</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lg:col-span-1">
+                <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden sticky top-24">
+
+                    <div class="p-5 border-b border-gray-700 bg-gray-800">
+                        <h3 class="font-bold text-lg mb-1">Course Content</h3>
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>12 Lessons</span>
+                            <span>6h 30m Total</span>
+                        </div>
+
+                        <div class="w-full bg-gray-700 rounded-full h-1.5 mt-3">
+                            <div id="progress-bar" class="bg-orange-500 h-1.5 rounded-full transition-all duration-500"
+                                style="width: 8%"></div>
+                        </div>
+                    </div>
+
+                    <div class="overflow-y-auto max-h-[600px] p-2 space-y-1" id="playlist">
+
+                        <button onclick="changeVideo('RGOj5yH7evk', '1. What is Version Control?', this)"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl bg-primary/20 border border-primary/50 text-left transition group">
+                            <div
+                                class="flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-white">
+                                <i class="fa-solid fa-play text-[10px]"></i>
+                            </div>
+                            <div class="flex-grow">
+                                <p class="text-sm font-semibold text-white">1. What is Version Control?</p>
+                                <span class="text-xs text-primary font-medium">35:00 • Playing</span>
+                            </div>
+                        </button>
+
+                        <button onclick="changeVideo('USjZcfj8yxE', '2. Installing Git & Config', this)"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
+                            <div
+                                class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
+                                2
+                            </div>
+                            <div class="flex-grow">
+                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Installing Git &
+                                    Config</p>
+                                <span class="text-xs text-gray-500">10:15</span>
+                            </div>
+                            <i class="fa-regular fa-circle-play text-gray-600 group-hover:text-accent"></i>
+                        </button>
+
+                        <button onclick="changeVideo('HVsySz-h9r4', '3. Staging and Committing', this)"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
+                            <div
+                                class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
+                                3
+                            </div>
+                            <div class="flex-grow">
+                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Staging and
+                                    Committing</p>
+                                <span class="text-xs text-gray-500">22:45</span>
+                            </div>
+                            <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
+                        </button>
+
+                        <button onclick="changeVideo('FyAAIHHClqI', '4. Branches and Merging', this)"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
+                            <div
+                                class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
+                                4
+                            </div>
+                            <div class="flex-grow">
+                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Branches and Merging
+                                </p>
+                                <span class="text-xs text-gray-500">28:10</span>
+                            </div>
+                            <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
+                        </button>
+
+                        <button onclick="changeVideo('3RjQznt-8kE', '5. GitHub & Remotes', this)"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
+                            <div
+                                class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
+                                5
+                            </div>
+                            <div class="flex-grow">
+                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">GitHub & Remotes</p>
+                                <span class="text-xs text-gray-500">40:00</span>
+                            </div>
+                            <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </aside>
+    </main>
+
+    <footer class="border-t border-gray-800 bg-gray-900 mt-12 py-8 text-center text-gray-500 text-sm">
+        &copy; 2025 Learnify Platform. All rights reserved.
+    </footer>
 
     <script>
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
-        const sidebar = document.getElementById('mobile-sidebar');
-        const overlay = document.getElementById('sidebar-overlay');
+        // --- SAVE COURSE LOGIC (UNIQUE FOR GIT) ---
+        function saveCurrentCourse() {
+            const courseData = {
+                id: 'git-404',
+                title: 'Git & GitHub Version Control',
+                lessons: '12 Lessons',
+                duration: '6h 30m',
+                image: 'https://i.pinimg.com/736x/ae/45/78/ae457871a5bef568338e8c73043afcf2.jpg',
+                link: 'git-course-detail.html'
+            };
 
-        // Function to open sidebar
-        function openSidebar() {
-            sidebar.classList.remove('-translate-x-full'); // Slide in
-            overlay.classList.remove('hidden'); // Show dark overlay
+            let savedCourses = JSON.parse(localStorage.getItem('learnify_saved')) || [];
+            const isSaved = savedCourses.some(course => course.id === courseData.id);
+
+            if (isSaved) {
+                savedCourses = savedCourses.filter(course => course.id !== courseData.id);
+                updateSaveButtonUI(false);
+            } else {
+                savedCourses.push(courseData);
+                updateSaveButtonUI(true);
+            }
+
+            localStorage.setItem('learnify_saved', JSON.stringify(savedCourses));
         }
 
-        // Function to close sidebar
-        function closeSidebar() {
-            sidebar.classList.add('-translate-x-full'); // Slide out
-            overlay.classList.add('hidden'); // Hide dark overlay
+        function updateSaveButtonUI(isSaved) {
+            const icon = document.getElementById('save-icon');
+            const text = document.getElementById('save-text');
+
+            if (isSaved) {
+                icon.classList.remove('fa-regular');
+                icon.classList.add('fa-solid', 'text-accent');
+                text.innerText = "Saved";
+                text.classList.add('text-accent');
+            } else {
+                icon.classList.remove('fa-solid', 'text-accent');
+                icon.classList.add('fa-regular');
+                text.innerText = "Save";
+                text.classList.remove('text-accent');
+            }
         }
 
-        // Event Listeners
-        mobileMenuBtn.addEventListener('click', openSidebar);
-        closeSidebarBtn.addEventListener('click', closeSidebar);
-        overlay.addEventListener('click', closeSidebar); // Click outside to close
+        window.onload = function () {
+            let savedCourses = JSON.parse(localStorage.getItem('learnify_saved')) || [];
+            const isSaved = savedCourses.some(course => course.id === 'git-404');
+            if (isSaved) updateSaveButtonUI(true);
+        };
+
+        // --- UPDATED VIDEO SWITCHER LOGIC ---
+        function changeVideo(videoId, title, element) {
+            // 1. Change Video Source
+            const iframe = document.getElementById('main-video');
+            iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1&autoplay=1`;
+
+            // 2. Change Title
+            document.getElementById('video-title').textContent = title;
+
+            // 3. SCROLL TO TOP (Scrolls the video container into view)
+            document.getElementById('video-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // 4. RESET ALL PLAYLIST ITEMS (Styles, Icons, Text)
+            const allItems = document.querySelectorAll('.playlist-item');
+
+            allItems.forEach((item, index) => {
+                // Reset styles to default
+                item.className = "playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group";
+
+                // Reset Icon to Number
+                const iconContainer = item.querySelector('div:first-child');
+                iconContainer.className = "flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white";
+                iconContainer.innerText = index + 1;
+
+                // Reset Text Styles and Remove "Playing"
+                const textContainer = item.querySelector('.flex-grow');
+                const titleEl = textContainer.querySelector('p');
+                const durationEl = textContainer.querySelector('span');
+
+                titleEl.className = "text-sm font-medium text-gray-300 group-hover:text-white";
+                durationEl.className = "text-xs text-gray-500";
+                durationEl.innerText = durationEl.innerText.replace(' • Playing', ''); // Strip "Playing" text
+            });
+
+            // 5. UPDATE CLICKED ITEM (Styles, Icon, Text)
+            // Active Container Style
+            element.className = "playlist-item w-full flex items-center gap-3 p-3 rounded-xl bg-primary/20 border border-primary/50 text-left transition group";
+
+            // Set Play Icon
+            const activeIconContainer = element.querySelector('div:first-child');
+            activeIconContainer.className = "flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-white";
+            activeIconContainer.innerHTML = '<i class="fa-solid fa-play text-[10px]"></i>';
+
+            // Set Active Text Style & Add "Playing"
+            const activeTextContainer = element.querySelector('.flex-grow');
+            const activeTitle = activeTextContainer.querySelector('p');
+            const activeDuration = activeTextContainer.querySelector('span');
+
+            activeTitle.className = "text-sm font-semibold text-white"; // White title
+            activeDuration.className = "text-xs text-primary font-medium"; // Purple time
+            if (!activeDuration.innerText.includes('Playing')) {
+                activeDuration.innerText += ' • Playing';
+            }
+
+            // 6. UPDATE PROGRESS BAR (Counting Logic)
+            // Calculate percentage based on current index vs total items
+            const index = Array.from(allItems).indexOf(element);
+            const total = allItems.length;
+            const progressPercent = ((index + 1) / total) * 100;
+
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+        }
     </script>
-
 </body>
 
 </html>
