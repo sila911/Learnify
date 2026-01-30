@@ -27,6 +27,28 @@
         }
     </script>
     <script>document.documentElement.classList.add('dark');</script>
+    <style>
+        /* Custom Animation for Shake Effect on Error */
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        .shake-animation {
+            animation: shake 0.3s ease-in-out;
+        }
+    </style>
 </head>
 
 <body class="font-sans antialiased bg-gray-900 text-white">
@@ -55,21 +77,36 @@
 
             <div class="lg:col-span-2 space-y-6">
 
-                <div
+                <div id="video-container"
                     class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-gray-700">
                     <iframe id="main-video" class="absolute inset-0 w-full h-full"
-                        src="https://www.youtube.com/embed/_uQrJ0TkZlc?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
+                        src="https://www.youtube.com/embed/_uQrJ0TkZlc?enablejsapi=1&rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
                         title="Course Video" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
                     </iframe>
                 </div>
 
+                <div id="lock-alert" class="hidden transform transition-all duration-300 ease-in-out">
+                    <div
+                        class="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-xl flex items-center gap-3 shadow-lg">
+                        <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-sm">Locked Content</p>
+                            <p id="lock-msg" class="text-sm opacity-90">You must finish watching the current video
+                                first.</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="flex items-start justify-between gap-4">
                     <div>
                         <h1 id="video-title" class="text-2xl md:text-3xl font-bold mb-2">1. Introduction to Python</h1>
                         <p class="text-gray-400 text-sm">
-                            <span class="mr-4"><i class="fa-regular fa-clock mr-1"></i>6 hour</span>
+                            <span class="mr-4"><i class="fa-regular fa-clock mr-1"></i> <span
+                                    id="video-duration">12:30</span></span>
                             <span><i class="fa-solid fa-signal mr-1"></i> Beginner Level</span>
                         </p>
                     </div>
@@ -93,9 +130,8 @@
                 </div>
 
                 <div class="prose prose-invert max-w-none text-gray-300">
-                    <p>In this lesson, we will cover the basics of Python syntax, variables, and data types. By the end
-                        of this video, you will have written your very first "Hello World" program and understood how
-                        Python handles memory management.</p>
+                    <p>In this lesson, we will cover the basics of Python syntax, variables, and data types. Watch the
+                        videos in order to unlock the next steps.</p>
                     <h3 class="text-white font-bold mt-4">What you'll learn:</h3>
                     <ul class="list-disc pl-5 space-y-1 mt-2">
                         <li>Installing Python 3.12</li>
@@ -106,26 +142,28 @@
             </div>
 
             <div class="lg:col-span-1">
-                <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden sticky top-24">
+                <div id="course-content-box"
+                    class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden sticky top-24 transition-colors duration-300">
 
                     <div class="p-5 border-b border-gray-700 bg-gray-800">
                         <h3 class="font-bold text-lg mb-1">Course Content</h3>
                         <div class="flex justify-between text-xs text-gray-400">
                             <span>15 Lessons</span>
-                            <span>9h 14m Total</span>
+                            <span>Strict Progression</span>
                         </div>
 
                         <div class="w-full bg-gray-700 rounded-full h-1.5 mt-3">
-                            <div class="bg-accent h-1.5 rounded-full" style="width: 15%"></div>
+                            <div id="progress-bar" class="bg-red-500 h-1.5 rounded-full transition-all duration-500"
+                                style="width: 0%"></div>
                         </div>
                     </div>
 
                     <div class="overflow-y-auto max-h-[600px] p-2 space-y-1" id="playlist">
 
-                        <button onclick="changeVideo('_uQrJ0TkZlc', '1. Introduction to Python', this)"
+                        <button id="btn-0" onclick="attemptPlay(0, '_uQrJ0TkZlc', '1. Introduction to Python', '12:30')"
                             class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl bg-primary/20 border border-primary/50 text-left transition group">
                             <div
-                                class="flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-white">
+                                class="icon-box flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-white">
                                 <i class="fa-solid fa-play text-[10px]"></i>
                             </div>
                             <div class="flex-grow">
@@ -134,58 +172,53 @@
                             </div>
                         </button>
 
-                        <button onclick="changeVideo('rfscVS0vtbw', '2. Variables & Data Types', this)"
-                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
+                        <button id="btn-1" onclick="attemptPlay(1, 'rfscVS0vtbw', '2. Variables & Data Types', '15:45')"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group opacity-50 cursor-not-allowed">
                             <div
-                                class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
-                                2
+                                class="icon-box flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400">
+                                <i class="fa-solid fa-lock text-[10px]"></i>
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Variables & Data
-                                    Types</p>
+                                <p class="text-sm font-medium text-gray-300">Variables & Data Types</p>
                                 <span class="text-xs text-gray-500">15:45</span>
                             </div>
-                            <i class="fa-regular fa-circle-play text-gray-600 group-hover:text-accent"></i>
                         </button>
 
-                        <button onclick="changeVideo('N4mEzFDjqtA', '3. Lists and Tuples', this)"
-                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
+                        <button id="btn-2" onclick="attemptPlay(2, 'N4mEzFDjqtA', '3. Lists and Tuples', '18:20')"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group opacity-50 cursor-not-allowed">
                             <div
-                                class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
-                                3
+                                class="icon-box flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400">
+                                <i class="fa-solid fa-lock text-[10px]"></i>
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Lists and Tuples</p>
+                                <p class="text-sm font-medium text-gray-300">Lists and Tuples</p>
                                 <span class="text-xs text-gray-500">18:20</span>
                             </div>
-                            <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
                         </button>
 
-                        <button onclick="changeVideo('kqtD5dpn9C8', '4. Python Functions', this)"
-                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
+                        <button id="btn-3" onclick="attemptPlay(3, 'kqtD5dpn9C8', '4. Python Functions', '22:10')"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group opacity-50 cursor-not-allowed">
                             <div
-                                class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
-                                4
+                                class="icon-box flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400">
+                                <i class="fa-solid fa-lock text-[10px]"></i>
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Python Functions</p>
+                                <p class="text-sm font-medium text-gray-300">Python Functions</p>
                                 <span class="text-xs text-gray-500">22:10</span>
                             </div>
-                            <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
                         </button>
 
-                        <button onclick="changeVideo('t8pPdKYpowI', '5. Object Oriented Programming', this)"
-                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group">
+                        <button id="btn-4"
+                            onclick="attemptPlay(4, 't8pPdKYpowI', '5. Object Oriented Programming', '45:00')"
+                            class="playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group opacity-50 cursor-not-allowed">
                             <div
-                                class="flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white">
-                                5
+                                class="icon-box flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400">
+                                <i class="fa-solid fa-lock text-[10px]"></i>
                             </div>
                             <div class="flex-grow">
-                                <p class="text-sm font-medium text-gray-300 group-hover:text-white">Object Oriented
-                                    Programming</p>
+                                <p class="text-sm font-medium text-gray-300">Object Oriented Programming</p>
                                 <span class="text-xs text-gray-500">45:00</span>
                             </div>
-                            <i class="fa-solid fa-lock text-gray-600 text-xs"></i>
                         </button>
 
                     </div>
@@ -199,51 +232,185 @@
         &copy; 2025 Learnify Platform. All rights reserved.
     </footer>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
+
     <script>
+        // --- 1. STATE MANAGEMENT ---
+        let player;
+        let currentPlayingIndex = 0;
+        let maxUnlockedIndex = 0;
+        const totalLessons = 5; // Matches the 5 videos in the list
+        let errorTimeout;
 
+        // --- 2. YOUTUBE API SETUP ---
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('main-video', {
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
 
-        // --- SAVE COURSE LOGIC ---
+        // --- 3. VIDEO END DETECTOR (Unlock Logic) ---
+        function onPlayerStateChange(event) {
+            // YT.PlayerState.ENDED is 0
+            if (event.data === 0) {
+                unlockNextLesson();
+            }
+        }
+
+        function unlockNextLesson() {
+            if (currentPlayingIndex === maxUnlockedIndex) {
+                if (maxUnlockedIndex < totalLessons - 1) {
+                    maxUnlockedIndex++;
+                    updatePlaylistUI();
+                }
+            }
+        }
+
+        // --- 4. CLICK HANDLER (The Gatekeeper) ---
+        function attemptPlay(index, videoId, title, duration) {
+            // SECURITY CHECK: Is this index allowed?
+            if (index > maxUnlockedIndex) {
+                showLockedError(index);
+                return;
+            }
+
+            // SUCCESS
+            document.getElementById('lock-alert').classList.add('hidden');
+            currentPlayingIndex = index;
+
+            if (player && player.loadVideoById) {
+                player.loadVideoById(videoId);
+            } else {
+                document.getElementById('main-video').src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=1`;
+            }
+
+            document.getElementById('video-title').textContent = title;
+            document.getElementById('video-duration').textContent = duration;
+            document.getElementById('video-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            updatePlaylistUI();
+        }
+
+        // --- 5. ERROR FEEDBACK (Red Button + Text) ---
+        function showLockedError(clickedIndex) {
+            const currentButton = document.getElementById(`btn-${maxUnlockedIndex}`);
+            const currentTitle = currentButton.querySelector('.flex-grow p').innerText;
+
+            const alertBox = document.getElementById('lock-alert');
+            const alertMsg = document.getElementById('lock-msg');
+
+            alertMsg.innerHTML = `You must finish watching <span class="font-bold text-white">"${currentTitle}"</span> to unlock this lesson.`;
+            alertBox.classList.remove('hidden');
+
+            const clickedBtn = document.getElementById(`btn-${clickedIndex}`);
+            clickedBtn.classList.add('border-red-500', 'bg-red-500/10', 'shake-animation');
+            clickedBtn.classList.remove('border-transparent');
+
+            if (errorTimeout) clearTimeout(errorTimeout);
+
+            errorTimeout = setTimeout(() => {
+                alertBox.classList.add('hidden');
+                clickedBtn.classList.remove('border-red-500', 'bg-red-500/10', 'shake-animation');
+                clickedBtn.classList.add('border-transparent');
+            }, 3000);
+        }
+
+        // --- 6. UI UPDATER ---
+        function updatePlaylistUI() {
+            for (let i = 0; i < totalLessons; i++) {
+                const btn = document.getElementById(`btn-${i}`);
+                const iconBox = btn.querySelector('.icon-box');
+                const titleText = btn.querySelector('.flex-grow p');
+                const durText = btn.querySelector('.flex-grow span');
+
+                // Clean Slate
+                btn.className = "playlist-item w-full flex items-center gap-3 p-3 rounded-xl border border-transparent text-left transition group";
+                iconBox.className = "icon-box flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs";
+                durText.innerText = durText.innerText.replace(' • Playing', '');
+
+                // LOGIC: CURRENT PLAYING
+                if (i === currentPlayingIndex) {
+                    btn.classList.add('bg-primary/20', 'border-primary/50');
+                    btn.classList.remove('border-transparent');
+                    iconBox.classList.add('bg-primary', 'text-white', 'font-bold');
+                    iconBox.innerHTML = '<i class="fa-solid fa-play text-[10px]"></i>';
+                    titleText.className = "text-sm font-semibold text-white";
+                    durText.className = "text-xs text-primary font-medium";
+                    durText.innerText += ' • Playing';
+                }
+                // LOGIC: UNLOCKED
+                else if (i <= maxUnlockedIndex) {
+                    btn.classList.add('hover:bg-gray-700/50', 'hover:border-gray-600');
+                    iconBox.classList.add('border', 'border-gray-500', 'text-gray-400', 'group-hover:border-white', 'group-hover:text-white');
+
+                    if (i < maxUnlockedIndex) {
+                        iconBox.innerHTML = '<i class="fa-solid fa-check text-[10px]"></i>';
+                        iconBox.classList.remove('border-gray-500', 'text-gray-400');
+                        iconBox.classList.add('text-green-500', 'border-green-500');
+                    } else {
+                        iconBox.innerText = i + 1;
+                    }
+
+                    titleText.className = "text-sm font-medium text-gray-300 group-hover:text-white";
+                    durText.className = "text-xs text-gray-500";
+                }
+                // LOGIC: LOCKED
+                else {
+                    btn.classList.add('opacity-50', 'cursor-not-allowed');
+                    iconBox.classList.add('border', 'border-gray-500', 'text-gray-400');
+                    iconBox.innerHTML = '<i class="fa-solid fa-lock text-[10px]"></i>';
+                    titleText.className = "text-sm font-medium text-gray-500";
+                    durText.className = "text-xs text-gray-600";
+                }
+            }
+            updateProgressBar();
+        }
+
+        function updateProgressBar() {
+            const progressBar = document.getElementById('progress-bar');
+            const percent = ((currentPlayingIndex + 1) / totalLessons) * 100;
+            progressBar.style.width = `${percent}%`;
+
+            progressBar.classList.remove('bg-red-500', 'bg-orange-500', 'bg-yellow-400', 'bg-green-500');
+
+            if (percent <= 25) progressBar.classList.add('bg-red-500');
+            else if (percent <= 50) progressBar.classList.add('bg-orange-500');
+            else if (percent <= 75) progressBar.classList.add('bg-yellow-400');
+            else progressBar.classList.add('bg-green-500');
+        }
+
+        // --- SAVE COURSE LOGIC (Updated for Python) ---
         function saveCurrentCourse() {
-            // 1. Define the course data (You can make this dynamic later)
             const courseData = {
-                id: 'python-101', // Unique ID
+                id: 'python-101',
                 title: 'Introduction to Python',
                 lessons: '15 Lessons',
                 duration: '9h 14m',
                 image: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=300',
-                link: 'course-detail.html'
+                link: 'course-detail.html' // Assumes you are on this page or linking to it
             };
 
-            // 2. Get existing saved courses from LocalStorage
             let savedCourses = JSON.parse(localStorage.getItem('learnify_saved')) || [];
-
-            // 3. Check if already saved
             const isSaved = savedCourses.some(course => course.id === courseData.id);
 
             if (isSaved) {
-                // OPTIONAL: If already saved, remove it (Toggle off)
                 savedCourses = savedCourses.filter(course => course.id !== courseData.id);
                 updateSaveButtonUI(false);
-                //alert("Course removed from Saved list.");
             } else {
-                // Add new course
                 savedCourses.push(courseData);
                 updateSaveButtonUI(true);
-                //alert("Course saved successfully! Check your list on the Home page.");
             }
-
-            // 4. Save back to LocalStorage
             localStorage.setItem('learnify_saved', JSON.stringify(savedCourses));
         }
 
-        // Update Button Style (Solid icon if saved)
         function updateSaveButtonUI(isSaved) {
             const icon = document.getElementById('save-icon');
             const text = document.getElementById('save-text');
-
             if (isSaved) {
                 icon.classList.remove('fa-regular');
-                icon.classList.add('fa-solid', 'text-accent'); // Solid Icon
+                icon.classList.add('fa-solid', 'text-accent');
                 text.innerText = "Saved";
                 text.classList.add('text-accent');
             } else {
@@ -254,47 +421,14 @@
             }
         }
 
-        // Check status on page load
         window.onload = function () {
+            // Check if saved
             let savedCourses = JSON.parse(localStorage.getItem('learnify_saved')) || [];
             const isSaved = savedCourses.some(course => course.id === 'python-101');
             if (isSaved) updateSaveButtonUI(true);
-        };
 
-        function changeVideo(videoId, title, element) {
-            // 1. Change Video Source
-            // 'rel=0' hides related videos from other channels
-            // 'modestbranding=1' minimizes YouTube logo
-            const iframe = document.getElementById('main-video');
-            iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1&autoplay=1`;
-
-            // 2. Change Title
-            document.getElementById('video-title').textContent = title;
-
-            // 3. Update Active Style in List
-            const allItems = document.querySelectorAll('.playlist-item');
-
-            // Reset all styles
-            allItems.forEach(item => {
-                item.className = "playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group";
-                // Reset Icon
-                const iconContainer = item.querySelector('div:first-child');
-                const number = Array.from(allItems).indexOf(item) + 1; // Get index number
-
-                // If it was the play icon, revert to number
-                if (iconContainer.innerHTML.includes('fa-play')) {
-                    iconContainer.className = "flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white";
-                    iconContainer.innerText = number;
-                }
-            });
-
-            // Set Active Style
-            element.className = "playlist-item w-full flex items-center gap-3 p-3 rounded-xl bg-primary/20 border border-primary/50 text-left transition group";
-
-            // Change Number to Play Icon
-            const activeIconContainer = element.querySelector('div:first-child');
-            activeIconContainer.className = "flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-white";
-            activeIconContainer.innerHTML = '<i class="fa-solid fa-play text-[10px]"></i>';
+            // Init UI
+            updatePlaylistUI();
         }
     </script>
 </body>
