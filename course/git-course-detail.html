@@ -55,7 +55,7 @@
 
             <div class="lg:col-span-2 space-y-6">
 
-                <div
+                <div id="video-container"
                     class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-gray-700">
                     <iframe id="main-video" class="absolute inset-0 w-full h-full"
                         src="https://www.youtube.com/embed/RGOj5yH7evk?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
@@ -118,7 +118,8 @@
                         </div>
 
                         <div class="w-full bg-gray-700 rounded-full h-1.5 mt-3">
-                            <div class="bg-orange-500 h-1.5 rounded-full" style="width: 8%"></div>
+                            <div id="progress-bar" class="bg-orange-500 h-1.5 rounded-full transition-all duration-500"
+                                style="width: 8%"></div>
                         </div>
                     </div>
 
@@ -205,13 +206,12 @@
     <script>
         // --- SAVE COURSE LOGIC (UNIQUE FOR GIT) ---
         function saveCurrentCourse() {
-            // 1. Define the course data
             const courseData = {
-                id: 'git-404', // UNIQUE ID FOR GIT
+                id: 'git-404',
                 title: 'Git & GitHub Version Control',
                 lessons: '12 Lessons',
                 duration: '6h 30m',
-                image: '	https://i.pinimg.com/736x/ae/45/78/ae457871a5bef568338e8c73043afcf2.jpg', // Git Image
+                image: 'https://i.pinimg.com/736x/ae/45/78/ae457871a5bef568338e8c73043afcf2.jpg',
                 link: 'git-course-detail.html'
             };
 
@@ -221,17 +221,14 @@
             if (isSaved) {
                 savedCourses = savedCourses.filter(course => course.id !== courseData.id);
                 updateSaveButtonUI(false);
-                //alert("Course removed from Saved list.");
             } else {
                 savedCourses.push(courseData);
                 updateSaveButtonUI(true);
-                //alert("Course saved successfully!");
             }
 
             localStorage.setItem('learnify_saved', JSON.stringify(savedCourses));
         }
 
-        // Update Button Style
         function updateSaveButtonUI(isSaved) {
             const icon = document.getElementById('save-icon');
             const text = document.getElementById('save-text');
@@ -249,38 +246,72 @@
             }
         }
 
-        // Check status on page load (Checking specifically for Git ID)
         window.onload = function () {
             let savedCourses = JSON.parse(localStorage.getItem('learnify_saved')) || [];
             const isSaved = savedCourses.some(course => course.id === 'git-404');
             if (isSaved) updateSaveButtonUI(true);
         };
 
-        // --- VIDEO SWITCHER LOGIC ---
+        // --- UPDATED VIDEO SWITCHER LOGIC ---
         function changeVideo(videoId, title, element) {
+            // 1. Change Video Source
             const iframe = document.getElementById('main-video');
             iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1&autoplay=1`;
 
+            // 2. Change Title
             document.getElementById('video-title').textContent = title;
 
+            // 3. SCROLL TO TOP (Scrolls the video container into view)
+            document.getElementById('video-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // 4. RESET ALL PLAYLIST ITEMS (Styles, Icons, Text)
             const allItems = document.querySelectorAll('.playlist-item');
 
-            allItems.forEach(item => {
+            allItems.forEach((item, index) => {
+                // Reset styles to default
                 item.className = "playlist-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-700/50 border border-transparent hover:border-gray-600 text-left transition group";
-                const iconContainer = item.querySelector('div:first-child');
-                const number = Array.from(allItems).indexOf(item) + 1;
 
-                if (iconContainer.innerHTML.includes('fa-play')) {
-                    iconContainer.className = "flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white";
-                    iconContainer.innerText = number;
-                }
+                // Reset Icon to Number
+                const iconContainer = item.querySelector('div:first-child');
+                iconContainer.className = "flex-shrink-0 w-6 h-6 rounded-full border border-gray-500 flex items-center justify-center text-xs text-gray-400 group-hover:border-white group-hover:text-white";
+                iconContainer.innerText = index + 1;
+
+                // Reset Text Styles and Remove "Playing"
+                const textContainer = item.querySelector('.flex-grow');
+                const titleEl = textContainer.querySelector('p');
+                const durationEl = textContainer.querySelector('span');
+
+                titleEl.className = "text-sm font-medium text-gray-300 group-hover:text-white";
+                durationEl.className = "text-xs text-gray-500";
+                durationEl.innerText = durationEl.innerText.replace(' • Playing', ''); // Strip "Playing" text
             });
 
+            // 5. UPDATE CLICKED ITEM (Styles, Icon, Text)
+            // Active Container Style
             element.className = "playlist-item w-full flex items-center gap-3 p-3 rounded-xl bg-primary/20 border border-primary/50 text-left transition group";
 
+            // Set Play Icon
             const activeIconContainer = element.querySelector('div:first-child');
             activeIconContainer.className = "flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-white";
             activeIconContainer.innerHTML = '<i class="fa-solid fa-play text-[10px]"></i>';
+
+            // Set Active Text Style & Add "Playing"
+            const activeTextContainer = element.querySelector('.flex-grow');
+            const activeTitle = activeTextContainer.querySelector('p');
+            const activeDuration = activeTextContainer.querySelector('span');
+
+            activeTitle.className = "text-sm font-semibold text-white"; // White title
+            activeDuration.className = "text-xs text-primary font-medium"; // Purple time
+            if (!activeDuration.innerText.includes('Playing')) {
+                activeDuration.innerText += ' • Playing';
+            }
+            // 6. UPDATE PROGRESS BAR (Counting Logic)
+            // Calculate percentage based on current index vs total items
+            const index = Array.from(allItems).indexOf(element);
+            const total = allItems.length;
+            const progressPercent = ((index + 1) / total) * 100;
+
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
         }
     </script>
 </body>
