@@ -21,5 +21,5 @@ The platform showcases structured learning paths for:
 * **Mobile Dev:** Flutter & Dart, iOS & Android.
 * **Data Science:** Python, Pandas, Machine Learning.
 * **Enterprise:** C# & .NET Core.
-* **Design:** UI/UX Design with Figma.
+
 
